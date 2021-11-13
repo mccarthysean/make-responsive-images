@@ -6,8 +6,8 @@ readme = "README.md"
 authors = ["Sean McCarthy <sean.mccarthy@hotmail.com>"]
 license = "MIT"
 repository = "https://github.com/mccarthysean/responsive-images-generator"
-homepage = "https://github.com/mccarthysean/responsive-images-generator"
-documentation = "https://github.com/mccarthysean/responsive-images-generator"
+homepage = "https://mccarthysean.dev/responsive-images-generator"
+documentation = "https://mccarthysean.dev/responsive-images-generator"
 keywords = ["responsive", "images", "generator"]
 
 [tool.poetry.urls]
