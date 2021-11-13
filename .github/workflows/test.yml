@@ -44,13 +44,3 @@ jobs:
         run: poetry run bash scripts/test.sh
       - name: Upload coverage
         uses: codecov/codecov-action@v1
-      - name: Publish PyPi Test
-        env:
-            PYPI_TOKEN_TEST: ${{ secrets.PYPI_TOKEN_TEST }}
-            PYPI_USERNAME_TEST: ${{ secrets.PYPI_USERNAME_TEST }}
-            PYPI_PASSWORD_TEST: ${{ secrets.PYPI_PASSWORD_TEST }}
-        run: |
-          # poetry config pypi-token.pypi $PYPI_TOKEN_TEST
-          # poetry config repositories.testpypi https://test.pypi.org/legacy/
-          bash scripts/poetry_publish_package_test.sh
-
