@@ -7,4 +7,4 @@ cd "$(dirname "$0")"
 echo "Current working directory: $(pwd)"
 
 cd ..
-poetry lock --no-update
+find . -type f -print0 | xargs -0 dos2unix
