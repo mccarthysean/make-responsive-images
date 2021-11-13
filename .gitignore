@@ -4,7 +4,7 @@
 __pycache__
 .pytest_cache
 htmlcov
-dist
+dist/
 site
 .coverage
 coverage.xml
@@ -19,3 +19,5 @@ build/
 
 # OS X
 .DS_Store
+
+tests/fixtures/xfer-original-*
