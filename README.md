@@ -1,8 +1,8 @@
-# responsive-images-generator
+# `responsive-images-generator`
 
-<p align="center">
-    <em>A summary phrase to catch attention!</em>
-</p>
+Generate responsive images automatically, for websites to use `srcset` in the `<img>` tags.
+
+This way you serve an optimal image for each device viewport size.
 
 <p align="center">
 <a href="https://github.com/mccarthysean/responsive-images-generator/actions?query=workflow%3ATest" target="_blank">
@@ -21,88 +21,47 @@
     <img src="https://img.shields.io/pypi/pyversions/responsive-images-generator.svg" alt="Python Versions">
 </a>
 
-## Installing responsive-images-generator
+**Usage**:
 
-Install the latest release:
-
-```bash
-pip install responsive-images-generator
+```console
+$ responsive-images-generator [OPTIONS] COMMAND [ARGS]...
 ```
 
-Or you can clone `responsive-images-generator` and start locally
+**Options**:
 
-```bash
+* `--install-completion`: Install completion for the current shell.
+* `--show-completion`: Show completion for the current shell, to copy it or customize the installation.
+* `--help`: Show this message and exit.
 
-# ensure you have Poetry installed
-pip install --user poetry
+**Commands**:
 
-# install all dependencies (including dev)
-poetry install
+* `load`: Load the portal gun
+* `shoot`: Shoot the portal gun
 
-# develop!
+## `responsive-images-generator load`
 
+Load the portal gun
+
+**Usage**:
+
+```console
+$ responsive-images-generator load [OPTIONS]
 ```
 
-## Example Usage
+**Options**:
 
-```python
-import responsive-images-generator
+* `--help`: Show this message and exit.
 
-# do stuff
+## `responsive-images-generator shoot`
+
+Shoot the portal gun
+
+**Usage**:
+
+```console
+$ responsive-images-generator shoot [OPTIONS]
 ```
 
-Only **Python 3.6+** is supported as required by the black, pydantic packages
+**Options**:
 
-## Publishing to Pypi
-
-### Poetry's documentation
-
-Note that it is recommended to use [API tokens](https://pypi.org/help/#apitoken) when uploading packages to PyPI.
-
->Once you have created a new token, you can tell Poetry to use it:
-
-<https://python-poetry.org/docs/repositories/#configuring-credentials>
-
-We do this using GitHub Actions' Workflows and Repository Secrets!
-
-### Repo Secrets
-
-Go to your repo settings and add a `PYPI_TOKEN` environment variable:
-
-![Github Actions setup of Poetry token environment variable](images/Github-Secrets-PYPI_TOKEN-Setup.png)
-
-### Inspect the GitHub Actions Publish Workflows
-
-```yml
-name: Publish
-
-on:
-  release:
-    types:
-      - created
-
-jobs:
-  publish:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      ...
-      ...
-      ...
-      - name: Publish
-        env:
-          PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}
-        run: |
-          poetry config pypi-token.pypi $PYPI_TOKEN
-          bash scripts/publish.sh
-```
-
-> That's it!
-
-When you make a release on GitHub, the publish workflow will run and deploy to PyPi! 🚀🎉😎
-
-## Contributing Guide
-
-Welcome! 😊👋
-
-> Please see the [Contributing Guide](CONTRIBUTING.md).
+* `--help`: Show this message and exit.
