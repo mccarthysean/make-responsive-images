@@ -11,7 +11,6 @@ echo "Current working directory: $(pwd)"
 poetry config repositories.testpypi https://test.pypi.org/legacy/
 poetry config pypi-token.pypi $PYPI_TOKEN_TEST
 # poetry publish --build --repository testpypi
-echo "PYPI_USERNAME_TEST: $PYPI_USERNAME_TEST"
 poetry publish --build --repository testpypi --username $PYPI_USERNAME_TEST --password $PYPI_PASSWORD_TEST
 
 # Test that it worked

@@ -1,4 +1,5 @@
 #!/bin/bash
+# This script is not currently used
 
 set -e
 
