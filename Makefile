@@ -60,5 +60,5 @@ deploy-docs:
 
 install: ## uninstall and install package with python
 install:
-	poetry remove ./responsive-images-generator
-	poetry add ./responsive-images-generator
+	poetry remove ./make-responsive-images
+	poetry add ./make-responsive-images

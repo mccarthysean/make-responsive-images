@@ -1,7 +1,9 @@
+from pathlib import Path
+
 from PIL import Image
 
 
-def resize_image(file, widths):
+def resize_image(file: Path, widths: list) -> list:
     """Resize the image to the widths specified"""
 
     image = Image.open(file)

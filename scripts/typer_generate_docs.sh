@@ -5,4 +5,4 @@ cd "$(dirname "$0")"
 echo "Current working directory: $(pwd)"
 
 cd ..
-typer responsive_images_generator.main utils docs --output /workspace/README.md --name responsive-images-generator
+typer make_responsive_images.main utils docs --output ./README-typer.md --name make-responsive-images

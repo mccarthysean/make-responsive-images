@@ -7,4 +7,4 @@ echo "Current working directory: $(pwd)"
 cd ..
 python -m mkdocs build
 
-cp ../docs/index.md ../README.md
+# cp ./docs/index.md ./README.md

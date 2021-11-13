@@ -1,7 +1,7 @@
 // For format details, see https://aka.ms/vscode-remote/devcontainer.json or the definition README at
 // https://github.com/microsoft/vscode-dev-containers/tree/master/containers/python-3-miniconda
 {
-	"name": "responsive_images_generator",
+	"name": "make_responsive_images",
 	// Path that the Docker build should be run from relative to devcontainer.json. 
 	// For example, a value of ".." would allow you to reference content in sibling directories. Defaults to "."
 	"context": "..",

@@ -50,7 +50,7 @@
             "name": "Python Run CLI",
             "type": "python",
             "request": "launch",
-            "module": "responsive_images_generator",
+            "module": "make_responsive_images",
             "console": "integratedTerminal",
             "args": [
                 "--version",

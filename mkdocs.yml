@@ -1,13 +1,13 @@
-site_name: responsive-images-generator
+site_name: make-responsive-images
 site_description: Generate responsive images for your website, so you can use srcset in your <img> tags and serve an optimal image to each device that views your site.
-site_url: https://github.com/mccarthysean/responsive-images-generator
+site_url: https://github.com/mccarthysean/make-responsive-images
 
 theme:
     name: 'material'
 
-repo_name: mccarthysean/responsive-images-generator
-repo_url: https://github.com/mccarthysean/responsive-images-generator
+repo_name: mccarthysean/make-responsive-images
+repo_url: https://github.com/mccarthysean/make-responsive-images
 edit_uri: ''
 
 nav:
-    - responsive-images-generator: 'index.md'
+    - make-responsive-images: 'index.md'

@@ -11,5 +11,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Conception!
 
-[Unreleased]: https://github.com/mccarthysean/responsive-images-generator/compare/v0.1.1...HEAD
-[0.1.1]: https://github.com/mccarthysean/responsive-images-generator/releases/tag/v0.1.1
+[Unreleased]: https://github.com/mccarthysean/make-responsive-images/compare/v0.1.1...HEAD
+[0.1.1]: https://github.com/mccarthysean/make-responsive-images/releases/tag/v0.1.1

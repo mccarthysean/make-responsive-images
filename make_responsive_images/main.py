@@ -28,9 +28,10 @@ def main(
         callback=_version_callback,
         is_eager=True,
     )
-) -> None:
+) -> bool:
     if version:
         return True
+    return False
 
 
 @app.command()
@@ -50,10 +51,10 @@ def image(
     typer.secho(f"Image: {image}", fg=typer.colors.GREEN)
     typer.secho(f"Widths needed: {widths}", fg=typer.colors.GREEN)
 
-    widths = widths.split(",")
-    widths = [int(width) for width in widths]
+    widths_split = widths.split(",")
+    widths_list = [int(width) for width in widths_split]
 
     file = Path(image)
-    images = resize_image(file, widths=widths)
+    images = resize_image(file, widths=widths_list)
 
     typer.secho(f"Images: {images}", fg=typer.colors.GREEN)

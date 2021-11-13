@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from responsive_images_generator import __app_name__, __version__, main
+from make_responsive_images import __app_name__, __version__, main
 from typer.testing import CliRunner
 
 runner = CliRunner()
