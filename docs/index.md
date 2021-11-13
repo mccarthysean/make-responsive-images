@@ -21,47 +21,36 @@ This way you serve an optimal image for each device viewport size.
     <img src="https://img.shields.io/pypi/pyversions/make-responsive-images.svg" alt="Python Versions">
 </a>
 
-**Usage**:
+## Usage
 
 ```console
-$ make-responsive-images [OPTIONS] COMMAND [ARGS]...
+$ resize [OPTIONS] COMMAND [ARGS]...
 ```
 
-**Options**:
+## Options
 
-* `--install-completion`: Install completion for the current shell.
-* `--show-completion`: Show completion for the current shell, to copy it or customize the installation.
-* `--help`: Show this message and exit.
+* -v, --version: Show the application's version and exit.
+* --help: Show this message and exit.
 
-**Commands**:
+## Commands
 
-* `load`: Load the portal gun
-* `shoot`: Shoot the portal gun
+* image: Resize one image
 
-## `make-responsive-images load`
+## `resize image`
 
-Load the portal gun
+Resize one image
 
-**Usage**:
+## Usage
 
 ```console
-$ make-responsive-images load [OPTIONS]
+$ resize image [OPTIONS] [IMAGE]
 ```
 
-**Options**:
+## Arguments
 
-* `--help`: Show this message and exit.
+* [IMAGE]: [default: /workspace/tests/fixtures/xfer-original.jpg]
 
-## `make-responsive-images shoot`
+## Options
 
-Shoot the portal gun
-
-**Usage**:
-
-```console
-$ make-responsive-images shoot [OPTIONS]
-```
-
-**Options**:
-
-* `--help`: Show this message and exit.
+* --widths TEXT: [default: 600,1000,1400]
+* --help: Show this message and exit.

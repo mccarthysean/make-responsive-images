@@ -7,4 +7,8 @@ echo "Current working directory: $(pwd)"
 cd ..
 python -m mkdocs build
 
-# cp ./docs/index.md ./README.md
+# Overwrite the root-level README.md file
+cp ./docs/index.md ./README.md
+
+# Preview the docs
+mkdocs serve --dev-addr 0.0.0.0:8008
