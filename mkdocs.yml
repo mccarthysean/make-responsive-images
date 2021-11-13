@@ -2,7 +2,8 @@ site_name: make-responsive-images
 site_description: Generate responsive images for your website, so you can use srcset in your <img> tags and serve an optimal image to each device that views your site.
 site_url: https://mccarthysean.dev/make-responsive-images
 
-theme: mkdocs
+# Use GitHub Pages theme instead
+# theme: mkdocs
 
 repo_name: mccarthysean/make-responsive-images
 repo_url: https://github.com/mccarthysean/make-responsive-images
