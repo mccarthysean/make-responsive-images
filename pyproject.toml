@@ -1,0 +1,47 @@
+[tool.poetry]
+name = "responsive-images-generator"
+version = "0.1.1"
+description = "Generate responsive images for your website, so you can use srcset in your <img> tags and serve an optimal image to each device that views your site."
+readme = "README.md"
+authors = ["Sean McCarthy <sean.mccarthy@hotmail.com>"]
+license = "MIT"
+repository = "https://github.com/mccarthysean/responsive-images-generator"
+homepage = "https://github.com/mccarthysean/responsive-images-generator"
+documentation = "https://github.com/mccarthysean/responsive-images-generator"
+keywords = ["responsive", "images", "generator"]
+
+[tool.poetry.urls]
+"Sean's Blog" = "https://mccarthysean.dev"
+"Sean's Company" = "https://myijack.com"
+
+[tool.poetry.scripts]
+resize = "responsive_images_generator.main:app"
+
+[tool.poetry.dependencies]
+python = "^3.6.2"
+Pillow = "^8.4.0"
+typer = "0.3.2"
+colorama = "^0.4.4"
+shellingham = "^1.4.0"
+
+[tool.poetry.dev-dependencies]
+bandit = "^1.7.0"
+safety = "^1.10.3"
+dodgy = "^0.2.1"
+black = "^21.10b0"
+autoflake = "^1.4"
+isort = "^5.10.1"
+pylint = "^2.11.1"
+typer-cli = "^0.0.12"
+mypy = "^0.782"
+flake8 = "^3.7.9"
+pre-commit = "^2.4.0"
+pytest = "^6.0.1"
+pytest-cov = "^2.8.1"
+mkdocs = "^1.1"
+mkdocs-material = "^6.0.1"
+markdown-include = "^0.6.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

@@ -1,0 +1,57 @@
+{
+  "python.languageServer": "Pylance",
+  "python.linting.pylintEnabled": true,
+  "python.linting.enabled": true,
+  "python.linting.pylintArgs": [
+    "--load-plugins",
+    "pylint_flask_sqlalchemy",
+    "pylint_flask"
+  ],
+  "python.testing.unittestEnabled": false,
+  "python.testing.nosetestsEnabled": false,
+  "python.testing.pytestEnabled": true,
+  "python.testing.pytestArgs": [
+    "app"
+  ],
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": false,
+  "[javascript]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features",
+    "editor.formatOnSave": true,
+  },
+  "compile-hero.disable-compile-files-on-did-save-code": true,
+  "[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "cSpell.words": [
+    "action",
+    "autoflake",
+    "cleary",
+    "codecov",
+    "cookiecutter",
+    "ian",
+    "iancleary",
+    "in",
+    "isort",
+    "issue",
+    "manager",
+    "master",
+    "mkdocs",
+    "mypy",
+    "project",
+    "pypackage",
+    "pyproject",
+    "pytest",
+    "samplemod",
+    "mccarthysean",
+    "v",
+    "venv",
+    "virtualenvs"
+  ]
+}

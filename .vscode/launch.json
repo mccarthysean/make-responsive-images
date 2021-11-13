@@ -1,0 +1,60 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        // Regular Python file debugger to run the current file
+        {
+            "name": "Python Run Current File",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "jinja": true, 
+            "justMyCode": false
+        },
+
+        // Pytest all files
+        {
+            "name": "Pytest All Files",
+            "type": "python",
+            "request": "launch",
+            "module": "pytest",
+            "console": "integratedTerminal",
+            "args": [
+                "/workspace/tests/",
+                "-v",
+                "--lf",
+                "--durations=0",
+            ],
+        },
+
+        // Pytest run the current file only
+        {
+            "name": "Pytest Run Current File",
+            "type": "python",
+            "request": "launch",
+            "module": "pytest",
+            "console": "integratedTerminal",
+            "args": [
+                "${file}",
+                "-v",
+                "--lf",
+                "--durations=0",
+            ],
+        },
+
+        // Run the main CLI application and get the version
+        {
+            "name": "Python Run CLI",
+            "type": "python",
+            "request": "launch",
+            "module": "responsive_images_generator",
+            "console": "integratedTerminal",
+            "args": [
+                "--version",
+            ],
+        },
+    ]
+}

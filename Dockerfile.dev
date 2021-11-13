@@ -1,0 +1,54 @@
+FROM python:3.8-slim-buster
+
+# Use Docker BuildKit for better caching and faster builds
+ARG DOCKER_BUILDKIT=1
+ARG BUILDKIT_INLINE_CACHE=1
+# Enable BuildKit for Docker-Compose
+ARG COMPOSE_DOCKER_CLI_BUILD=1
+
+# Configure apt and install packages
+# I had to add --insecure since curl didn't work...
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends apt-utils dialog curl unzip 2>&1 && \
+    curl --insecure "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" && \
+    unzip awscliv2.zip && \
+    ./aws/install && \
+    # Verify git, process tools, lsb-release (common in install instructions for CLIs) installed
+    apt-get install -y --no-install-recommends sudo git redis-server libpq-dev sass procps iproute2 lsb-release gnupg apt-transport-https && \
+    # Clean up
+    apt-get autoremove -y && \
+    apt-get clean -y && \
+    rm -rf /var/lib/apt/lists/*
+
+ARG USER_UID_NEW=1000
+ARG USER_GID_NEW=$USER_UID_NEW
+ARG USERNAME_NEW=user
+
+WORKDIR /workspace
+
+# Add a new non-root user
+RUN groupadd --system --gid $USER_GID_NEW $USERNAME_NEW && \
+    useradd --system --uid $USER_UID_NEW --gid $USER_GID_NEW --home /home/$USERNAME_NEW -m $USERNAME_NEW
+
+RUN chown -R $USER_UID_NEW:root /workspace && \
+    chown -R $USER_UID_NEW:root /home/$USERNAME_NEW && \
+    echo $USERNAME_NEW ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME_NEW && \
+    chmod 0440 /etc/sudoers.d/$USERNAME_NEW
+
+# Set Poetry installation location (i.e. $POETRY_HOME/venv)
+ENV POETRY_HOME=/usr/local
+# Install Poetry
+RUN pip install --upgrade pip && \
+    # Install Poetry
+    curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/install-poetry.py | python - && \
+    # Clean up
+    apt-get autoremove -y && \
+    apt-get clean -y && \
+    rm -rf /var/lib/apt/lists/*
+    
+# Set the user so nobody can run as root on the Docker host (security)
+USER $USER_UID_NEW
+
+COPY poetry.lock pyproject.toml ./
+RUN poetry config virtualenvs.create false && \
+    poetry install --no-interaction --no-ansi
