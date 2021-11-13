@@ -21,24 +21,6 @@
     <img src="https://img.shields.io/pypi/pyversions/responsive-images-generator.svg" alt="Python Versions">
 </a>
 
-## The Basic Idea
-
-This is a template module collecting many utilities I have liked from other projects, to serve as a personal reference.
-
-- [https://github.com/mccarthysean/pydantic-sqlalchemy/](https://github.com/mccarthysean/pydantic-sqlalchemy/)
-- [https://github.com/cookiecutter/cookiecutter](https://github.com/cookiecutter/cookiecutter)
-
-## Features
-
-- Poetry (virtual environment and publish to PyPi, all with one tool)
-- black (linting/formatter)
-- autoflake (removing unused packages)
-- isort (dependency organization)
-- mypy (static type checking)
-- pytest (including test coverage)
-- GitHub Actions for CI/CD
-- mkdocs for documentation (with material theme)
-
 ## Installing responsive-images-generator
 
 Install the latest release:
@@ -47,7 +29,7 @@ Install the latest release:
 pip install responsive-images-generator
 ```
 
-Or you can clone `responsive-images-generator` and get started locally
+Or you can clone `responsive-images-generator` and start locally
 
 ```bash
 
