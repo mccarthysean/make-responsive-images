@@ -45,6 +45,10 @@ jobs:
         uses: codecov/codecov-action@v1
       - name: Code Quality Checks
         run: poetry run bash scripts/lint_check.sh
+      - name: Publish Docs
+        run: |
+          poetry run pip install mkdocs-material
+          poetry run mkdocs gh-deploy --force --config-file ./mkdocs.yml
         
   # code-quality:
   #   runs-on: ubuntu-latest
