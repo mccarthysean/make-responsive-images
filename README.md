@@ -47,7 +47,7 @@ resize image [OPTIONS] [IMAGE]
 
 * `[IMAGE]`: [default: /workspace/tests/fixtures/xfer-original.jpg]
 
-**Options**:
+## Options
 
 * `--widths TEXT`: [default: 600,1000,1400]
 * `--help`: Show this message and exit.
