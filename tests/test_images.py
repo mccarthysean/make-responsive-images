@@ -36,18 +36,19 @@ def test_image_resize():
             "--html",
             "--classes=img-fluid",
             "--dir=static/img",
-        ]
+        ],
     )
     assert result.exit_code == 0
     # Should be four images in the folder now, plus the html file
     files_new = [f for f in images_path.glob("*")]
     assert len(files_new) == 5
-    
+
     img_tag_file = images_path.joinpath("img_tag.html")
     assert img_tag_file in files_new
     with open(img_tag_file, "r") as f:
         contents = f.read()
-    assert contents == """<img class="img-fluid" loading="lazy" 
+
+    contents_should_be = """<img class="img-fluid" loading="lazy" 
   sizes="100vw" 
   alt="" 
   src="static/img/xfer-original.jpg" 
@@ -55,3 +56,4 @@ def test_image_resize():
     static/img/xfer-original-600px.jpg 600w,
     static/img/xfer-original-1000px.jpg 1000w,
     static/img/xfer-original-1400px.jpg 1400w">"""
+    assert contents == contents_should_be

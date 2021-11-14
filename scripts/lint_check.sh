@@ -13,15 +13,15 @@ echo ""
 echo "Running isort..."
 isort --profile black ./make_responsive_images ./tests --check-only
 
-# Opinionated but lovely auto-formatting
-echo ""
-echo "Running black..."
-black ./make_responsive_images ./tests --check
-
 # Remove unused imports and unused variables
 echo ""
 echo "Running autoflake..."
 autoflake --in-place --remove-unused-variables --remove-all-unused-imports --verbose --recursive ./make_responsive_images/ ./tests
+
+# Opinionated but lovely auto-formatting
+echo ""
+echo "Running black..."
+black ./make_responsive_images ./tests --check
 
 echo ""
 echo "Running flake8..."

@@ -6,12 +6,6 @@ from PIL import Image
 def resize_image(
     file: Path,
     widths: list,
-    html: bool,
-    classes: str,
-    img_sizes: str,
-    lazy: bool,
-    alt: str,
-    dir: str,
 ) -> list:
     """Resize the image to the widths specified"""
 
@@ -63,43 +57,53 @@ def resize_image(
 
         filenames.append((filename_new, width))
 
-    if html:
-        html_str = '<img '
-
-        if classes:
-            html_str += f'class="{classes}" '
-        if lazy:
-            html_str += 'loading="lazy" '
-
-        html_str += f'\n  sizes="{img_sizes}" '
-        html_str += f'\n  alt="{alt}" '
-        
-        def _get_filename(dir, filename):
-            if dir:
-                return f"{dir}/{filename}"
-            return filename
-
-        src_filename = _get_filename(dir, file.name)
-        html_str += f'\n  src="{src_filename}" '
-
-        srcset_str = '\n  srcset="'
-        n_filenames = len(filenames)
-        for num, (filename, width) in enumerate(filenames):
-            is_last = num == (n_filenames - 1)
-                # {{ url_for('static', filename='img/vru/ijack-egas-vru-sizes-600px.jpg') }} 600w,
-                # {{ url_for('static', filename='img/vru/ijack-egas-vru-sizes-1000px.jpg') }} 1000w,
-                # {{ url_for('static', filename='img/vru/ijack-egas-vru-sizes-1600px.jpg') }} 1600w"
-            filename = _get_filename(dir, filename)
-            if is_last:
-                srcset_str += f'\n    {filename} {width}w"'
-            else:
-                srcset_str += f'\n    {filename} {width}w,'
-        
-        html_str += srcset_str
-        html_str += ">"
-        
-        html_path = file.parent.joinpath("img_tag.html")
-        with open(html_path, "w") as f:
-            f.write(html_str)
-
     return filenames
+
+
+def make_html(
+    orig_img_file: Path,
+    filenames: list,
+    classes: str,
+    img_sizes: str,
+    lazy: bool,
+    alt: str,
+    dir: str,
+) -> None:
+    """Resize the image to the widths specified"""
+
+    html_str = "<img "
+
+    if classes:
+        html_str += f'class="{classes}" '
+    if lazy:
+        html_str += 'loading="lazy" '
+
+    html_str += f'\n  sizes="{img_sizes}" '
+    html_str += f'\n  alt="{alt}" '
+
+    def _get_filename(dir: str, filename: str) -> str:
+        if dir:
+            return f"{dir}/{filename}"
+        return filename
+
+    src_filename = _get_filename(dir, orig_img_file.name)
+    html_str += f'\n  src="{src_filename}" '
+
+    srcset_str = '\n  srcset="'
+    n_filenames = len(filenames)
+    for num, (filename, width) in enumerate(filenames):
+        is_last = num == (n_filenames - 1)
+        filename = _get_filename(dir, filename)
+        if is_last:
+            srcset_str += f'\n    {filename} {width}w"'
+        else:
+            srcset_str += f"\n    {filename} {width}w,"
+
+    html_str += srcset_str
+    html_str += ">"
+
+    html_path = orig_img_file.parent.joinpath("img_tag.html")
+    with open(html_path, "w") as f:
+        f.write(html_str)
+
+    return None

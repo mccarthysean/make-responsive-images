@@ -5,7 +5,7 @@ from typing import Optional
 import typer
 
 from . import __app_name__, __version__
-from .utils import resize_image
+from .utils import make_html, resize_image
 
 app = typer.Typer()
 logger = logging.getLogger(__name__)
@@ -43,35 +43,22 @@ def image(
             .joinpath("fixtures")
             .joinpath("xfer-original.jpg")
         ),
-        help="Image file location"
+        help="Image file location",
     ),
-    widths: str = typer.Option(
-        "600,1000,1400",
-        help="Widths of new images, in pixels"
-    ),
-    html: bool = typer.Option(
-        True,
-        help="Generate HTML <img> tag"
-    ),
+    widths: str = typer.Option("600,1000,1400", help="Widths of new images, in pixels"),
+    html: bool = typer.Option(True, help="Generate HTML <img> tag"),
     classes: str = typer.Option(
-        None,
-        help='Classnames to add to the <img> tag (e.g. class="img-fluid")'
+        None, help='Classnames to add to the <img> tag (e.g. class="img-fluid")'
     ),
     img_sizes: str = typer.Option(
-        "100vw",
-        help='Sizes for the <img> tag (e.g. sizes="100vw")'
+        "100vw", help='Sizes for the <img> tag (e.g. sizes="100vw")'
     ),
-    lazy: bool = typer.Option(
-        True,
-        help='Adds loading="lazy" to <img> tag for SEO'
-    ),
+    lazy: bool = typer.Option(True, help='Adds loading="lazy" to <img> tag for SEO'),
     alt: str = typer.Option(
-        "",
-        help='Adds alt="" to the <img> tag (e.g. alt="Funny image")'
+        "", help='Adds alt="" to the <img> tag (e.g. alt="Funny image")'
     ),
     dir: str = typer.Option(
-        None,
-        help='Images directory to prepend to the src (e.g. src="<dir>/<image>")'
+        None, help='Images directory to prepend to the src (e.g. src="<dir>/<image>")'
     ),
 ) -> None:
     """Resize one image"""
@@ -87,13 +74,16 @@ def image(
     filenames = resize_image(
         file=file,
         widths=widths_list,
-        html=html,
-        classes=classes,
-        img_sizes=img_sizes,
-        lazy=lazy,
-        alt=alt,
-        dir=dir,
     )
     typer.echo(f"filenames: {filenames}")
 
-
+    if html:
+        make_html(
+            orig_img_file=file,
+            filenames=filenames,
+            classes=classes,
+            img_sizes=img_sizes,
+            lazy=lazy,
+            alt=alt,
+            dir=dir,
+        )
