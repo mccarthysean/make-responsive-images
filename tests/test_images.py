@@ -25,9 +25,33 @@ def test_image_resize():
         if not f.stem == "xfer-original":
             f.unlink()
     # There should only be one left now
-    assert len([f for f in images_path.glob("*")]) == 1
+    files_remaining = [f for f in images_path.glob("*")]
+    assert len(files_remaining) == 1
 
-    result = runner.invoke(main.app, ["image", str(test_image)])
+    result = runner.invoke(
+        main.app,
+        [
+            "image",
+            f"{str(test_image)}",
+            "--html",
+            "--classes=img-fluid",
+            "--dir=static/img",
+        ]
+    )
     assert result.exit_code == 0
-    # Should be four files in the folder now
-    assert len([f for f in images_path.glob("*")]) == 4
+    # Should be four images in the folder now, plus the html file
+    files_new = [f for f in images_path.glob("*")]
+    assert len(files_new) == 5
+    
+    img_tag_file = images_path.joinpath("img_tag.html")
+    assert img_tag_file in files_new
+    with open(img_tag_file, "r") as f:
+        contents = f.read()
+    assert contents == """<img class="img-fluid" loading="lazy" 
+  sizes="100vw" 
+  alt="" 
+  src="static/img/xfer-original.jpg" 
+  srcset="
+    static/img/xfer-original-600px.jpg 600w,
+    static/img/xfer-original-1000px.jpg 1000w,
+    static/img/xfer-original-1400px.jpg 1400w">"""

@@ -24,7 +24,7 @@
             "console": "integratedTerminal",
             "args": [
                 "/workspace/tests/",
-                "-v",
+                "-vv",
                 "--lf",
                 "--durations=0",
             ],
@@ -39,7 +39,7 @@
             "console": "integratedTerminal",
             "args": [
                 "${file}",
-                "-v",
+                "-vv",
                 "--lf",
                 "--durations=0",
             ],
