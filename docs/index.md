@@ -20,37 +20,34 @@ This way you serve an optimal image for each device viewport size.
 <a href="https://pypi.org/project/make-responsive-images/" target="_blank">
     <img src="https://img.shields.io/pypi/pyversions/make-responsive-images.svg" alt="Python Versions">
 </a>
+</p>
 
 ## Usage
 
-```console
-$ resize [OPTIONS] COMMAND [ARGS]...
+```bash
+resize [OPTIONS] COMMAND [ARGS]...
 ```
 
 ## Options
 
-* -v, --version: Show the application's version and exit.
-* --help: Show this message and exit.
+* `-v, --version`: Show the application's version and exit.
+* `--help`: Show this message and exit.
 
 ## Commands
 
-* image: Resize one image
-
-## `resize image`
-
-Resize one image
+* `image`: Resize one image
 
 ## Usage
 
-```console
-$ resize image [OPTIONS] [IMAGE]
+```bash
+resize image [OPTIONS] [IMAGE]
 ```
 
 ## Arguments
 
-* [IMAGE]: [default: /workspace/tests/fixtures/xfer-original.jpg]
+* `[IMAGE]`: [default: /workspace/tests/fixtures/xfer-original.jpg]
 
 ## Options
 
-* --widths TEXT: [default: 600,1000,1400]
-* --help: Show this message and exit.
+* `--widths TEXT`: [default: 600,1000,1400]
+* `--help`: Show this message and exit.
