@@ -37,4 +37,6 @@ jobs:
       - name: Publish
         env:
             PYPI_TOKEN_PROD: ${{ secrets.PYPI_TOKEN_PROD }}
-        run: bash scripts/poetry_publish_package_prod.sh
+        run: |
+          poetry config pypi-token.pypi $PYPI_TOKEN_PROD
+          poetry run bash scripts/poetry_publish_package_prod.sh
