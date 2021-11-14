@@ -29,15 +29,11 @@ theme:
     text: Roboto
     code: Roboto Mono
   favicon: assets/favicon.png
-  # icon:
-  #   # logo: logo
-  #   logo: img/favicon.ico
+  logo: assets/favicon.ico
 
   palette:
     primary: light blue
     accent: indigo
-  # logo: img/ijack-logo.png
-  logo: img/favicon.ico
 
 nav:
   - make-responsive-images: index.md

@@ -28,7 +28,7 @@ This way you serve an optimal image for each device viewport size.
 resize [OPTIONS] COMMAND [ARGS]...
 ```
 
-## Options
+### Options
 
 * `-v, --version`: Show the application's version and exit.
 * `--help`: Show this message and exit.
@@ -37,17 +37,17 @@ resize [OPTIONS] COMMAND [ARGS]...
 
 * `image`: Resize one image
 
-## Usage
+### Usage
 
 ```bash
 resize image [OPTIONS] [IMAGE]
 ```
 
-## Arguments
+### Arguments
 
 * `[IMAGE]`: [default: /workspace/tests/fixtures/xfer-original.jpg]
 
-## Options
+### Options
 
 * `--widths TEXT`: [default: 600,1000,1400]
 * `--help`: Show this message and exit.
