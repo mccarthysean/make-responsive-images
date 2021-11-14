@@ -31,3 +31,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 [v0.1.3]: https://github.com/mccarthysean/make-responsive-images/compare/v0.1.3...HEAD
 [0.1.3]: https://github.com/mccarthysean/make-responsive-images/releases/tag/v0.1.3
+
+## [v0.1.4]
+
+## [0.1.4] - 2021-11-14
+
+- Just linting and simplifying the code
+
+[v0.1.4]: https://github.com/mccarthysean/make-responsive-images/compare/v0.1.4...HEAD
+[0.1.4]: https://github.com/mccarthysean/make-responsive-images/releases/tag/v0.1.4
