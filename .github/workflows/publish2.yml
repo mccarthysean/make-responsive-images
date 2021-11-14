@@ -36,10 +36,5 @@ jobs:
 
       - name: Publish
         env:
-            PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}
-            # PYPI_TOKEN_TEST: ${{ secrets.PYPI_TOKEN_TEST }}
-        run: |
-          # poetry config pypi-token.pypi $PYPI_TOKEN_TEST
-          # poetry config repositories.testpypi https://test.pypi.org/legacy/
-          # bash scripts/poetry_publish_package_test.sh
-          bash scripts/poetry_publish_package_prod.sh
+            PYPI_TOKEN_PROD: ${{ secrets.PYPI_TOKEN_PROD }}
+        run: bash scripts/poetry_publish_package_prod.sh
