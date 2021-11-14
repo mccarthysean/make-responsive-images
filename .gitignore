@@ -1,0 +1,23 @@
+.idea
+.ipynb_checkpoints
+.mypy_cache
+__pycache__
+.pytest_cache
+htmlcov
+dist/
+site
+.coverage
+coverage.xml
+.netlify
+test.db
+log.txt
+Pipfile
+Pipfile.lock
+build/
+*.egg-info/
+.env
+
+# OS X
+.DS_Store
+
+tests/fixtures/xfer-original-*

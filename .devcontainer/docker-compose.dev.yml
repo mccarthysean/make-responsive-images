@@ -1,0 +1,15 @@
+version: '3.7'
+services:
+  images_dev:
+    build:
+      # context: where should docker-compose look for the Dockerfile?
+      # i.e. either a path to a directory containing a Dockerfile, or a url to a git repository
+      context: ..
+      dockerfile: Dockerfile.dev
+    env_file: 
+      - ../.env
+    volumes:
+      # Mount the root folder that contains .git
+      - ..:/workspace
+    # Overrides default command so things don't shut down after the process ends.
+    command: sleep infinity
