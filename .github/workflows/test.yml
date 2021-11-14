@@ -80,7 +80,7 @@ jobs:
         run: poetry run flake8 .
       - name: Run bandit
         run: |
-          bandit -r "./make_responsive_images"
-          bandit -r "./tests" --configfile "./.bandit_4_tests.yml"
+          poetry run bandit -r "./make_responsive_images"
+          poetry run bandit -r "./tests" --configfile "./.bandit_4_tests.yml"
       - name: Run saftey
         run: poetry run safety check
