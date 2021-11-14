@@ -11,7 +11,8 @@ echo "Current working directory: $(pwd)"
 autoflake --in-place --remove-unused-variables --remove-all-unused-imports --verbose --recursive ../make_responsive_images/ ../tests
 
 # Nice sorting of imports
-isort --multi-line=3 --trailing-comma --force-grid-wrap=0 --combine-as --line-width 88 --recursive --thirdparty ../make_responsive_images ../tests
+# isort --multi-line=3 --trailing-comma --force-grid-wrap=0 --combine-as --line-width 88 --recursive --thirdparty ../make_responsive_images ../tests
+isort --profile black ../make_responsive_images ../tests
 
 # Opinionated but lovely auto-formatting
 black ../make_responsive_images ../tests
