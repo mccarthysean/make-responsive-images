@@ -12,8 +12,6 @@ google_analytics:
 # theme: mkdocs
 theme:
   name: material
-  # name: null
-  # custom_dir: mkdocs-material/material
 
   # 404 page
   static_templates:
@@ -28,7 +26,7 @@ theme:
   font:
     text: Roboto
     code: Roboto Mono
-  favicon: assets/favicon.png
+  favicon: assets/favicon.ico
   logo: assets/favicon.ico
 
   palette:
