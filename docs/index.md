@@ -50,4 +50,11 @@ resize image [OPTIONS] [IMAGE]
 ### Options
 
 * `--widths TEXT`: [default: 600,1000,1400]
+* `--widths TEXT`: Widths of new images, in pixels  [default: 600,1000,1400]
+* `--html / --no-html`: Generate HTML <img> tag  [default: True]
+* `--classes TEXT`: Classnames to add to the <img> tag (e.g. class="img-fluid")
+* `--img-sizes TEXT`: Sizes for the <img> tag (e.g. sizes="100vw")  [default: 100vw]
+* `--lazy / --no-lazy`: Adds loading="lazy" to <img> tag for SEO  [default: True]
+* `--alt TEXT`: Adds alt="" to the <img> tag (e.g. alt="Funny image")  [default: ]
+* `--dir TEXT`: Images directory to prepend to the src (e.g. `src="<dir>/<image>"`)
 * `--help`: Show this message and exit.

@@ -28,7 +28,7 @@ This way you serve an optimal image for each device viewport size.
 resize [OPTIONS] COMMAND [ARGS]...
 ```
 
-## Options
+### Options
 
 * `-v, --version`: Show the application's version and exit.
 * `--help`: Show this message and exit.
@@ -37,17 +37,24 @@ resize [OPTIONS] COMMAND [ARGS]...
 
 * `image`: Resize one image
 
-## Usage
+### Usage
 
 ```bash
 resize image [OPTIONS] [IMAGE]
 ```
 
-## Arguments
+### Arguments
 
 * `[IMAGE]`: [default: /workspace/tests/fixtures/xfer-original.jpg]
 
-## Options
+### Options
 
 * `--widths TEXT`: [default: 600,1000,1400]
+* `--widths TEXT`: Widths of new images, in pixels  [default: 600,1000,1400]
+* `--html / --no-html`: Generate HTML <img> tag  [default: True]
+* `--classes TEXT`: Classnames to add to the <img> tag (e.g. class="img-fluid")
+* `--img-sizes TEXT`: Sizes for the <img> tag (e.g. sizes="100vw")  [default: 100vw]
+* `--lazy / --no-lazy`: Adds loading="lazy" to <img> tag for SEO  [default: True]
+* `--alt TEXT`: Adds alt="" to the <img> tag (e.g. alt="Funny image")  [default: ]
+* `--dir TEXT`: Images directory to prepend to the src (e.g. src="<dir>/<image>")
 * `--help`: Show this message and exit.
