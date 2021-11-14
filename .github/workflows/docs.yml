@@ -29,5 +29,6 @@ jobs:
           poetry-version: ${{ matrix.poetry-version }}
       - name: Publish Docs
         run: |
-          poetry run pip install mkdocs-material
+          # poetry run pip install mkdocs-material
+          poetry install
           poetry run mkdocs gh-deploy --force --config-file ./mkdocs.yml
