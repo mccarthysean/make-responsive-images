@@ -9,7 +9,8 @@ theme:
     palette:
       primary: light blue
       accent: indigo
-    logo: img/ijack-logo.png
+    # logo: img/ijack-logo.png
+    logo: img/favicon.ico
     favicon: img/favicon.ico
 
 repo_name: mccarthysean/make-responsive-images
