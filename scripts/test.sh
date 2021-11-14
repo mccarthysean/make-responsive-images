@@ -7,6 +7,7 @@ set -x
 cd "$(dirname "$0")"
 echo "Current working directory: $(pwd)"
 
-pytest ../tests/ --cov=../make_responsive_images --cov=../tests --cov-report=term-missing ${@}
+cd ..
+pytest ./tests/ --cov=./make_responsive_images --cov=./tests --cov-report=term-missing ${@}
 
-bash ./lint.sh
+bash ./scripts/lint.sh
