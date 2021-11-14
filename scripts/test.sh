@@ -8,6 +8,6 @@ cd "$(dirname "$0")"
 echo "Current working directory: $(pwd)"
 
 cd ..
-pytest ./tests/ --cov=./make_responsive_images --cov=./tests --cov-report=term-missing ${@}
+pytest ./tests/ --cov=./make_responsive_images --cov=./tests --cov-report=xml ${@}
 
 bash ./scripts/lint.sh
