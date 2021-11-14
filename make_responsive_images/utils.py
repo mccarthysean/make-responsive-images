@@ -31,8 +31,6 @@ def resize_image(file: Path, widths: list) -> list:
             continue
         # new_image = image.resize((width, height), Image.ANTIALIAS)
         new_image = image.resize((width, height), Image.NEAREST)
-        assert not new_image is image
-        assert new_image != image
         resized.append(new_image)
 
         # if crop:
@@ -43,7 +41,10 @@ def resize_image(file: Path, widths: list) -> list:
         #         centering=(crop[0] / 100.0, crop[1] / 100.0),
         #     )
         # else:
-        #     new_image = orig_image.app((width, height), resample=Image.BICUBIC)
+        #     new_image = orig_image.app(
+        #         (width, height),
+        #         resample=Image.BICUBIC
+        #     )
 
         # Save the image
         filename_new = f"{file.stem}-{width}px{file.suffix}"
