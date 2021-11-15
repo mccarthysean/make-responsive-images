@@ -49,3 +49,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 [v0.1.5]: https://github.com/mccarthysean/make-responsive-images/compare/v0.1.5...HEAD
 [0.1.5]: https://github.com/mccarthysean/make-responsive-images/releases/tag/v0.1.5
+
+## [v0.1.6]
+
+## [0.1.6] - 2021-11-15
+
+- Just updated the README for PyPI
+
+[v0.1.6]: https://github.com/mccarthysean/make-responsive-images/compare/v0.1.6...HEAD
+[0.1.6]: https://github.com/mccarthysean/make-responsive-images/releases/tag/v0.1.6
