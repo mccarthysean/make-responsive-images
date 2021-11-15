@@ -40,3 +40,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 [v0.1.4]: https://github.com/mccarthysean/make-responsive-images/compare/v0.1.4...HEAD
 [0.1.4]: https://github.com/mccarthysean/make-responsive-images/releases/tag/v0.1.4
+
+## [v0.1.5]
+
+## [0.1.5] - 2021-11-15
+
+- Just getting the GitHub action to work properly
+
+[v0.1.5]: https://github.com/mccarthysean/make-responsive-images/compare/v0.1.5...HEAD
+[0.1.5]: https://github.com/mccarthysean/make-responsive-images/releases/tag/v0.1.5
