@@ -71,6 +71,9 @@ resize image [OPTIONS] [IMAGE]
 
 Sean McCarthy is Chief Data Scientist at [IJACK Technologies Inc](https://myijack.com), a leading manufacturer of fully-automated pumps to green the oil and gas industry.
 
+![Alt text](https://raw.github.com/mccarthysean/main/make-responsive-images/docs/assets/sm.svg)
+<img src="https://raw.github.com/mccarthysean/main/make-responsive-images/docs/assets/sm.svg">
+
 <a href="https://mccarthysean.dev" target="_blank">
     <svg version="1.1" width="40" height="27" xmlns="http://www.w3.org/2000/svg">
         <rect x="9" y="1" width="25" height="25" rx="2" ry="2" fill="black"></rect>
