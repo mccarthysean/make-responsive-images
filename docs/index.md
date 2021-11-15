@@ -74,5 +74,21 @@ Sean McCarthy is Chief Data Scientist at [IJACK Technologies Inc](https://myijac
 <a href="https://mccarthysean.dev">
     <img src="https://raw.githubusercontent.com/mccarthysean/make-responsive-images/main/docs/assets/mccarthysean.svg?sanitize=1" alt="Sean McCarthy's blog">
 </a>
-
-![Sean McCarthy's blog](https://raw.githubusercontent.com/mccarthysean/make-responsive-images/main/docs/assets/mccarthysean.svg?sanitize=1)
+<a href="https://www.linkedin.com/in/seanmccarthy2/">
+    <img src="https://raw.githubusercontent.com/mccarthysean/make-responsive-images/main/docs/assets/linkedin.svg?sanitize=1" alt="LinkedIn">
+</a>
+<a href="https://github.com/mccarthysean">
+    <img src="https://raw.githubusercontent.com/mccarthysean/make-responsive-images/main/docs/assets/github.svg?sanitize=1" alt="GitHub">
+</a>
+<a href="https://twitter.com/mccarthysean">
+    <img src="https://raw.githubusercontent.com/mccarthysean/make-responsive-images/main/docs/assets/twitter.svg?sanitize=1" alt="Twitter">
+</a>
+<a href="https://www.facebook.com/sean.mccarth">
+    <img src="https://raw.githubusercontent.com/mccarthysean/make-responsive-images/main/docs/assets/facebook.svg?sanitize=1" alt="Facebook">
+</a>
+<a href="https://medium.com/@mccarthysean">
+    <img src="https://raw.githubusercontent.com/mccarthysean/make-responsive-images/main/docs/assets/medium.svg?sanitize=1" alt="Medium">
+</a>
+<a href="https://www.instagram.com/mccarthysean/">
+    <img src="https://raw.githubusercontent.com/mccarthysean/make-responsive-images/main/docs/assets/instagram.svg?sanitize=1" alt="Instagram">
+</a>
