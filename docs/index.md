@@ -8,8 +8,8 @@ This way you serve an optimal image for each device viewport size.
 <a href="https://github.com/mccarthysean/make-responsive-images/actions?query=workflow%3ATest" target="_blank">
     <img src="https://github.com/mccarthysean/make-responsive-images/workflows/Test/badge.svg" alt="Test">
 </a>
-<a href="https://github.com/mccarthysean/make-responsive-images/actions?query=workflow%3APublish" target="_blank">
-    <img src="https://github.com/mccarthysean/make-responsive-images/workflows/Publish/badge.svg" alt="Publish">
+<a href="https://github.com/mccarthysean/make-responsive-images/actions?query=workflow%3Apypi" target="_blank">
+    <img src="https://github.com/mccarthysean/make-responsive-images/workflows/Upload%20Package%20to%20PyPI/badge.svg" alt="Publish">
 </a>
 <a href="https://codecov.io/gh/mccarthysean/make-responsive-images" target="_blank">
     <img src="https://img.shields.io/codecov/c/github/mccarthysean/make-responsive-images?color=%2334D058" alt="Coverage">
