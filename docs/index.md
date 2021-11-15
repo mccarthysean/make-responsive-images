@@ -1,6 +1,6 @@
 # `make-responsive-images`
 
-Generate responsive images automatically, for websites to use `srcset` in the `<img>` tags.
+Generate responsive images automatically, for websites to use `srcset` and `sizes` in the `<img>` tags.
 
 This way you serve an optimal image for each device viewport size.
 
@@ -21,6 +21,14 @@ This way you serve an optimal image for each device viewport size.
     <img src="https://img.shields.io/pypi/pyversions/make-responsive-images.svg" alt="Python Versions">
 </a>
 </p>
+
+## Installation
+
+[Install from PyPI](https://pypi.org/project/make-responsive-images/)
+
+```bash
+pip install make-responsive-images
+```
 
 ## Usage
 
