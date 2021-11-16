@@ -49,7 +49,8 @@ def resize_image(
         # Save the image
         # filename_new = f"{file.stem}-{width}px{file.suffix}"
         fmt = fmt.lower()
-        assert fmt in ("jpg", "webp"), "fmt must be either 'jpg' or 'webp'"
+        if fmt not in ("jpg", "webp"):
+            raise TypeError('fmt must be either "jpg" or "webp"')
         filename_new = f"{file.stem}-{width}px.{fmt}"
         path_new = file.parent.joinpath(filename_new)
         fmt2 = "jpeg" if fmt == "jpg" else fmt
