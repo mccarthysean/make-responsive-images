@@ -9,8 +9,9 @@ cd ..
 echo "Current working directory: $(pwd)"
 
 echo ""
-echo "Ensure you run 'poetry install' before generating the docs..."
-resize --version
+# echo "Ensure you run 'poetry install' before generating the docs..."
+echo "Checking 'resize'..."
+poetry run resize --version
 echo ""
 echo "Ensure you have typer-cli installed before generating the docs..."
 typer --version

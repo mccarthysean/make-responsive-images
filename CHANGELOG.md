@@ -67,3 +67,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 [v0.1.7]: https://github.com/mccarthysean/make-responsive-images/compare/v0.1.7...HEAD
 [0.1.7]: https://github.com/mccarthysean/make-responsive-images/releases/tag/v0.1.7
+
+## [v0.1.8]
+
+## [0.1.8] - 2021-11-15
+
+- Added support for compression quality (i.e. "--qual" option)
+- Added ability to save as either .jpg or .webp
+
+[v0.1.8]: https://github.com/mccarthysean/make-responsive-images/compare/v0.1.8...HEAD
+[0.1.8]: https://github.com/mccarthysean/make-responsive-images/releases/tag/v0.1.8
+

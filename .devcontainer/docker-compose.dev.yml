@@ -11,5 +11,6 @@ services:
     volumes:
       # Mount the root folder that contains .git
       - ..:/workspace
+      - ../../myijack:/myijack:cached
     # Overrides default command so things don't shut down after the process ends.
     command: sleep infinity

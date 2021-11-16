@@ -28,6 +28,7 @@ def test_image_resize():
     files_remaining = [f for f in images_path.glob("*")]
     assert len(files_remaining) == 1
 
+    fmt = "webp"
     result = runner.invoke(
         main.app,
         [
@@ -36,6 +37,8 @@ def test_image_resize():
             "--html",
             "--classes=img-fluid",
             "--dir=static/img",
+            f"--fmt={fmt}",
+            "--qual=60",
         ],
     )
     assert result.exit_code == 0
@@ -48,12 +51,13 @@ def test_image_resize():
     with open(img_tag_file, "r") as f:
         contents = f.read()
 
-    contents_should_be = """<img class="img-fluid" loading="lazy" 
+    contents_should_be = f"""<img class="img-fluid" 
   sizes="100vw" 
   alt="" 
-  src="static/img/xfer-original.jpg" 
+  src="static/img/xfer-original.{fmt}" 
   srcset="
-    static/img/xfer-original-600px.jpg 600w,
-    static/img/xfer-original-1000px.jpg 1000w,
-    static/img/xfer-original-1400px.jpg 1400w">"""
+    static/img/xfer-original-600px.{fmt} 600w,
+    static/img/xfer-original-1000px.{fmt} 1000w,
+    static/img/xfer-original-1400px.{fmt} 1400w"
+  width="1400" height="805">"""
     assert contents == contents_should_be

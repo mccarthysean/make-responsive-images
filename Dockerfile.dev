@@ -7,14 +7,8 @@ ARG BUILDKIT_INLINE_CACHE=1
 ARG COMPOSE_DOCKER_CLI_BUILD=1
 
 # Configure apt and install packages
-# I had to add --insecure since curl didn't work...
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends apt-utils dialog curl unzip 2>&1 && \
-    curl --insecure "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" && \
-    unzip awscliv2.zip && \
-    ./aws/install && \
-    # Verify git, process tools, lsb-release (common in install instructions for CLIs) installed
-    apt-get install -y --no-install-recommends sudo git redis-server libpq-dev sass procps iproute2 lsb-release gnupg apt-transport-https && \
+    apt-get install -y --no-install-recommends apt-utils curl sudo git libwebp-dev && \
     # Clean up
     apt-get autoremove -y && \
     apt-get clean -y && \

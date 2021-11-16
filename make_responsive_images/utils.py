@@ -6,10 +6,14 @@ from PIL import Image
 def resize_image(
     file: Path,
     widths: list,
+    fmt: str,
+    qual: int,
 ) -> list:
     """Resize the image to the widths specified"""
 
-    image = Image.open(file)
+    # Convert to RGB so we can save as .webp
+    image = Image.open(file).convert("RGB")
+    # image_jpeg = Image.open(file)
 
     # filter out duplicates and larger than original
     sizes_set = set()
@@ -22,20 +26,42 @@ def resize_image(
         sizes_set.add((width, height))
     sizes = sorted(sizes_set)
 
-    if sizes[0] == image.size:
-        # smallest size is original image
-        return [image]
+    # if sizes[0] == image.size:
+    #     # smallest size is original image
+    #     return [image]
 
     # create the resized images
     resized = []
     filenames = []
     for (width, height) in sizes:
         if (width, height) == (image.width, image.height):
-            resized.append(image)
-            continue
-        # new_image = image.resize((width, height), Image.ANTIALIAS)
-        new_image = image.resize((width, height), Image.NEAREST)
+            # resized.append(image)
+            # continue
+            new_image = image
+            # new_image_jpeg = image_jpeg
+        else:
+            # new_image = image.resize((width, height), Image.ANTIALIAS)
+            new_image = image.resize((width, height), Image.NEAREST)
+            # new_image_jpeg = image_jpeg.resize((width, height), Image.NEAREST)
+
         resized.append(new_image)
+
+        # Save the image
+        # filename_new = f"{file.stem}-{width}px{file.suffix}"
+        fmt = fmt.lower()
+        assert fmt in ("jpg", "webp"), "fmt must be either 'jpg' or 'webp'"
+        filename_new = f"{file.stem}-{width}px.{fmt}"
+        path_new = file.parent.joinpath(filename_new)
+        fmt2 = "jpeg" if fmt == "jpg" else fmt
+        # Set quality to max 100, min 0
+        quality = max(0, min(100, qual))
+        new_image.save(path_new, fmt2, quality=quality, optimize=True)
+
+        # filename_new = f"{file.stem}-{width}px.jpg"
+        # path_new = file.parent.joinpath(filename_new)
+        # new_image.save(path_new, "JPEG", quality=50, optimize=True)
+
+        filenames.append((filename_new, width, height))
 
         # if crop:
         #     new_image = ImageOps.fit(
@@ -50,13 +76,6 @@ def resize_image(
         #         resample=Image.BICUBIC
         #     )
 
-        # Save the image
-        filename_new = f"{file.stem}-{width}px{file.suffix}"
-        path_new = file.parent.joinpath(filename_new)
-        new_image.save(path_new)
-
-        filenames.append((filename_new, width))
-
     return filenames
 
 
@@ -68,6 +87,7 @@ def make_html(
     lazy: bool,
     alt: str,
     dir: str,
+    fmt: str,
 ) -> None:
     """Resize the image to the widths specified"""
 
@@ -86,18 +106,19 @@ def make_html(
             return f"{dir}/{filename}"
         return filename
 
-    src_filename = _get_filename(dir, orig_img_file.name)
+    src_filename = _get_filename(dir, f"{orig_img_file.stem}.{fmt}")
     html_str += f'\n  src="{src_filename}" '
 
     srcset_str = '\n  srcset="'
     n_filenames = len(filenames)
-    for num, (filename, width) in enumerate(filenames):
+    for num, (filename, width, height) in enumerate(filenames):
         is_last = num == (n_filenames - 1)
         filename = _get_filename(dir, filename)
-        if is_last:
-            srcset_str += f'\n    {filename} {width}w"'
-        else:
+        if not is_last:
             srcset_str += f"\n    {filename} {width}w,"
+        else:
+            srcset_str += f'\n    {filename} {width}w"'
+            srcset_str += f'\n  width="{width}" height="{height}"'
 
     html_str += srcset_str
     html_str += ">"

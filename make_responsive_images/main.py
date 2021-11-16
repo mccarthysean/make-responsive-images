@@ -53,12 +53,18 @@ def image(
     img_sizes: str = typer.Option(
         "100vw", help='Sizes for the <img> tag (e.g. sizes="100vw")'
     ),
-    lazy: bool = typer.Option(True, help='Adds loading="lazy" to <img> tag for SEO'),
+    lazy: bool = typer.Option(False, help='Adds loading="lazy" to <img> tag for SEO'),
     alt: str = typer.Option(
         "", help='Adds alt="" to the <img> tag (e.g. alt="Funny image")'
     ),
     dir: str = typer.Option(
         None, help='Images directory to prepend to the src (e.g. src="<dir>/<image>")'
+    ),
+    fmt: str = typer.Option(
+        "webp", help='Image type to save as ("jpg" and "webp" supported)'
+    ),
+    qual: int = typer.Option(
+        100, help='Compression to apply (i.e. 0=max, 100=min)'
     ),
 ) -> None:
     """Resize one image"""
@@ -74,6 +80,8 @@ def image(
     filenames = resize_image(
         file=file,
         widths=widths_list,
+        fmt=fmt,
+        qual=qual,
     )
     typer.echo(f"filenames: {filenames}")
 
@@ -86,4 +94,5 @@ def image(
             lazy=lazy,
             alt=alt,
             dir=dir,
+            fmt=fmt,
         )
