@@ -63,9 +63,7 @@ def image(
     fmt: str = typer.Option(
         "webp", help='Image type to save as ("jpg" and "webp" supported)'
     ),
-    qual: int = typer.Option(
-        100, help='Compression to apply (i.e. 0=max, 100=min)'
-    ),
+    qual: int = typer.Option(100, help="Compression to apply (i.e. 0=max, 100=min)"),
 ) -> None:
     """Resize one image"""
 
