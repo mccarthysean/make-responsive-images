@@ -39,7 +39,9 @@ $ make-responsive-images image [OPTIONS] [IMAGE]
 * `--img-sizes TEXT`: Sizes for the <img> tag (e.g. sizes="100vw")  [default: 100vw]
 * `--lazy / --no-lazy`: Adds loading="lazy" to <img> tag for SEO  [default: False]
 * `--alt TEXT`: Adds alt="" to the <img> tag (e.g. alt="Funny image")  [default: ]
-* `--dir TEXT`: Images directory to prepend to the src (e.g. src="<dir>/<image>")
+* `--dir TEXT`: Images directory to prepend to the src (e.g. src="dir/image")
 * `--fmt TEXT`: Image type to save as ("jpg" and "webp" supported)  [default: webp]
 * `--qual INTEGER`: Compression to apply (i.e. 0=max, 100=min)  [default: 100]
+* `--lower / --no-lower`: Converts filename to lowercase  [default: True]
+* `--dashes / --no-dashes`: Converts underscores to dashes for SEO  [default: True]
 * `--help`: Show this message and exit.

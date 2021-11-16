@@ -8,6 +8,8 @@ def resize_image(
     widths: list,
     fmt: str,
     qual: int,
+    lower: bool,
+    dashes: bool,
 ) -> list:
     """Resize the image to the widths specified"""
 
@@ -47,11 +49,18 @@ def resize_image(
         resized.append(new_image)
 
         # Save the image
-        # filename_new = f"{file.stem}-{width}px{file.suffix}"
         fmt = fmt.lower()
         if fmt not in ("jpg", "webp"):
             raise TypeError('fmt must be either "jpg" or "webp"')
+
         filename_new = f"{file.stem}-{width}px.{fmt}"
+
+        if lower:
+            filename_new = filename_new.lower()
+
+        if dashes:
+            filename_new = filename_new.replace("_", "-")
+
         path_new = file.parent.joinpath(filename_new)
         fmt2 = "jpeg" if fmt == "jpg" else fmt
         # Set quality to max 100, min 0

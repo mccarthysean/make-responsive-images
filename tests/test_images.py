@@ -39,6 +39,8 @@ def test_image_resize():
             "--dir=static/img",
             f"--fmt={fmt}",
             "--qual=60",
+            "--lower",
+            "--dashes",
         ],
     )
     assert result.exit_code == 0

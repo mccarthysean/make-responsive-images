@@ -58,12 +58,14 @@ def image(
         "", help='Adds alt="" to the <img> tag (e.g. alt="Funny image")'
     ),
     dir: str = typer.Option(
-        None, help='Images directory to prepend to the src (e.g. src="<dir>/<image>")'
+        None, help='Images directory to prepend to the src (e.g. src="dir/image")'
     ),
     fmt: str = typer.Option(
         "webp", help='Image type to save as ("jpg" and "webp" supported)'
     ),
     qual: int = typer.Option(100, help="Compression to apply (i.e. 0=max, 100=min)"),
+    lower: bool = typer.Option(True, help="Converts filename to lowercase"),
+    dashes: bool = typer.Option(True, help="Converts underscores to dashes for SEO"),
 ) -> None:
     """Resize one image"""
 
@@ -80,6 +82,8 @@ def image(
         widths=widths_list,
         fmt=fmt,
         qual=qual,
+        lower=lower,
+        dashes=dashes,
     )
     typer.echo(f"filenames: {filenames}")
 
