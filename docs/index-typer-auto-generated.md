@@ -44,4 +44,5 @@ $ make-responsive-images image [OPTIONS] [IMAGE]
 * `--qual INTEGER`: Compression to apply (i.e. 0=max, 100=min)  [default: 100]
 * `--lower / --no-lower`: Converts filename to lowercase  [default: True]
 * `--dashes / --no-dashes`: Converts underscores to dashes for SEO  [default: True]
+* `--flask / --no-flask`: Uses Python Flask's 'url_for('static', ...)'  [default: False]
 * `--help`: Show this message and exit.

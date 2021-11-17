@@ -98,6 +98,7 @@ def make_html(
     alt: str,
     dir: str,
     fmt: str,
+    flask: bool,
 ) -> None:
     """Resize the image to the widths specified"""
 
@@ -111,23 +112,29 @@ def make_html(
     html_str += f'\n  sizes="{img_sizes}" '
     html_str += f'\n  alt="{alt}" '
 
-    def _get_filename(dir: str, filename: str) -> str:
+    def _get_filename(dir: str, filename: str, flask: bool) -> str:
         if dir:
+            if flask:
+                return (
+                    r"{{ " + f"url_for('static', filename='{dir}/{filename}')" + r" }}"
+                )
             return f"{dir}/{filename}"
         return filename
 
-    src_filename = _get_filename(dir, f"{orig_img_file.stem}.{fmt}")
-    html_str += f'\n  src="{src_filename}" '
+    src_filename = _get_filename(
+        dir=dir, filename=f"{orig_img_file.stem}.{fmt}", flask=flask
+    )
+    html_str += '\n  src="' + src_filename + '" '
 
     srcset_str = '\n  srcset="'
     n_filenames = len(filenames)
     for num, (filename, width, height) in enumerate(filenames):
         is_last = num == (n_filenames - 1)
-        filename = _get_filename(dir, filename)
+        filename = _get_filename(dir=dir, filename=filename, flask=flask)
         if not is_last:
-            srcset_str += f"\n    {filename} {width}w,"
+            srcset_str += "\n    " + filename + f" {width}w,"
         else:
-            srcset_str += f'\n    {filename} {width}w"'
+            srcset_str += "\n    " + filename + f' {width}w"'
             srcset_str += f'\n  width="{width}" height="{height}"'
 
     html_str += srcset_str

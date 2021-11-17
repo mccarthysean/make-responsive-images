@@ -66,12 +66,25 @@ def image(
     qual: int = typer.Option(100, help="Compression to apply (i.e. 0=max, 100=min)"),
     lower: bool = typer.Option(True, help="Converts filename to lowercase"),
     dashes: bool = typer.Option(True, help="Converts underscores to dashes for SEO"),
+    flask: bool = typer.Option(
+        False, help="Uses Python Flask's 'url_for('static', ...)'"
+    ),
 ) -> None:
     """Resize one image"""
 
     typer.secho(f"Image: {image}", fg=typer.colors.GREEN)
     typer.echo(f"Widths needed: {widths}")
     typer.echo(f"HTML wanted: {html}")
+    typer.echo(f"Classes wanted: {classes}")
+    typer.echo(f"Image sizes wanted: {img_sizes}")
+    typer.echo(f"Lazy loading wanted: {lazy}")
+    typer.echo(f"Alt text wanted: {alt}")
+    typer.echo(f"Directory to append: {dir}")
+    typer.echo(f"Image format wanted: {fmt}")
+    typer.echo(f"Quality/compression wanted: {qual}")
+    typer.echo(f"Lowercase filename wanted: {lower}")
+    typer.echo(f"Dashes wanted: {dashes}")
+    typer.echo(f"Flask url_for() wanted: {flask}")
 
     widths_split = widths.split(",")
     widths_list = [int(width) for width in widths_split]
@@ -97,4 +110,5 @@ def image(
             alt=alt,
             dir=dir,
             fmt=fmt,
+            flask=flask,
         )

@@ -36,11 +36,12 @@ def test_image_resize():
             f"{str(test_image)}",
             "--html",
             "--classes=img-fluid",
-            "--dir=static/img",
+            "--dir=img",
             f"--fmt={fmt}",
             "--qual=60",
             "--lower",
             "--dashes",
+            "--flask",
         ],
     )
     assert result.exit_code == 0
@@ -53,13 +54,13 @@ def test_image_resize():
     with open(img_tag_file, "r") as f:
         contents = f.read()
 
-    contents_should_be = f"""<img class="img-fluid" 
+    contents_should_be = r"""<img class="img-fluid" 
   sizes="100vw" 
   alt="" 
-  src="static/img/xfer-original.{fmt}" 
+  src="{{ url_for('static', filename='img/xfer-original.webp') }}" 
   srcset="
-    static/img/xfer-original-600px.{fmt} 600w,
-    static/img/xfer-original-1000px.{fmt} 1000w,
-    static/img/xfer-original-1400px.{fmt} 1400w"
+    {{ url_for('static', filename='img/xfer-original-600px.webp') }} 600w,
+    {{ url_for('static', filename='img/xfer-original-1000px.webp') }} 1000w,
+    {{ url_for('static', filename='img/xfer-original-1400px.webp') }} 1400w"
   width="1400" height="805">"""
     assert contents == contents_should_be
