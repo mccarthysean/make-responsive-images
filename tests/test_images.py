@@ -57,10 +57,10 @@ def test_image_resize():
     contents_should_be = r"""<img class="img-fluid" 
   sizes="100vw" 
   alt="" 
-  src="{{ url_for('static', filename='img/xfer-original.webp') }}" 
   srcset="
     {{ url_for('static', filename='img/xfer-original-600px.webp') }} 600w,
     {{ url_for('static', filename='img/xfer-original-1000px.webp') }} 1000w,
     {{ url_for('static', filename='img/xfer-original-1400px.webp') }} 1400w"
+  src="{{ url_for('static', filename='img/xfer-original-1400px.webp') }}" 
   width="1400" height="805">"""
     assert contents == contents_should_be

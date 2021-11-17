@@ -15,7 +15,6 @@ def resize_image(
 
     # Convert to RGB so we can save as .webp
     image = Image.open(file).convert("RGB")
-    # image_jpeg = Image.open(file)
 
     # filter out duplicates and larger than original
     sizes_set = set()
@@ -37,14 +36,10 @@ def resize_image(
     filenames = []
     for (width, height) in sizes:
         if (width, height) == (image.width, image.height):
-            # resized.append(image)
-            # continue
             new_image = image
-            # new_image_jpeg = image_jpeg
         else:
             # new_image = image.resize((width, height), Image.ANTIALIAS)
             new_image = image.resize((width, height), Image.NEAREST)
-            # new_image_jpeg = image_jpeg.resize((width, height), Image.NEAREST)
 
         resized.append(new_image)
 
@@ -121,11 +116,6 @@ def make_html(
             return f"{dir}/{filename}"
         return filename
 
-    src_filename = _get_filename(
-        dir=dir, filename=f"{orig_img_file.stem}.{fmt}", flask=flask
-    )
-    html_str += '\n  src="' + src_filename + '" '
-
     srcset_str = '\n  srcset="'
     n_filenames = len(filenames)
     for num, (filename, width, height) in enumerate(filenames):
@@ -135,6 +125,7 @@ def make_html(
             srcset_str += "\n    " + filename + f" {width}w,"
         else:
             srcset_str += "\n    " + filename + f' {width}w"'
+            srcset_str += '\n  src="' + filename + '" '
             srcset_str += f'\n  width="{width}" height="{height}"'
 
     html_str += srcset_str
