@@ -58,7 +58,7 @@ def image(
         "", help='Adds alt="" to the <img> tag (e.g. alt="Funny image")'
     ),
     dir: str = typer.Option(
-        None, help='Images directory to prepend to the src (e.g. src="dir/image")'
+        None, help='Images directory to prepend to the src (e.g. src="dir/images")'
     ),
     fmt: str = typer.Option(
         "webp", help='Image type to save as ("jpg" and "webp" supported)'
@@ -109,6 +109,5 @@ def image(
             lazy=lazy,
             alt=alt,
             dir=dir,
-            fmt=fmt,
             flask=flask,
         )
