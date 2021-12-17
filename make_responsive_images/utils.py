@@ -60,6 +60,8 @@ def resize_image(
         fmt2 = "jpeg" if fmt == "jpg" else fmt
         # Set quality to max 100, min 0
         quality = max(0, min(100, qual))
+        # The optimize flag will do an extra pass on the image to find a way
+        # to reduce its size as much as possible
         new_image.save(path_new, fmt2, quality=quality, optimize=True)
 
         # filename_new = f"{file.stem}-{width}px.jpg"
@@ -92,7 +94,6 @@ def make_html(
     lazy: bool,
     alt: str,
     dir: str,
-    fmt: str,
     flask: bool,
 ) -> None:
     """Resize the image to the widths specified"""
