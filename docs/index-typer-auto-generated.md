@@ -33,7 +33,7 @@ $ make-responsive-images image [OPTIONS] [IMAGE]
 
 **Options**:
 
-* `--widths TEXT`: Widths of new images, in pixels  [default: 600,1000,1400]
+* `--widths TEXT`: Widths of new images, in pixels  [default: 500,1000,1500,2000,2500]
 * `--html / --no-html`: Generate HTML <img> tag  [default: True]
 * `--classes TEXT`: Classnames to add to the <img> tag (e.g. class="img-fluid")
 * `--img-sizes TEXT`: Sizes for the <img> tag (e.g. sizes="100vw")  [default: 100vw]

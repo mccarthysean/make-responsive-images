@@ -121,18 +121,18 @@ def make_html(
     n_filenames = len(filenames)
     for num, (filename, width, height) in enumerate(filenames):
         is_last = num == (n_filenames - 1)
-        filename = _get_filename(dir=dir, filename=filename, flask=flask)
+        filename2 = _get_filename(dir=dir, filename=filename, flask=flask)
         if not is_last:
-            srcset_str += "\n    " + filename + f" {width}w,"
+            srcset_str += "\n    " + filename2 + f" {width}w,"
         else:
-            srcset_str += "\n    " + filename + f' {width}w"'
-            srcset_str += '\n  src="' + filename + '" '
+            srcset_str += "\n    " + filename2 + f' {width}w"'
+            srcset_str += '\n  src="' + filename2 + '" '
             srcset_str += f'\n  width="{width}" height="{height}"'
 
     html_str += srcset_str
     html_str += ">"
 
-    html_path = orig_img_file.parent.joinpath("img_tag.html")
+    html_path = orig_img_file.parent.joinpath(f"img-tag-{filename}.html")
     with open(html_path, "w") as f:
         f.write(html_str)
 
