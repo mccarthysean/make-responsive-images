@@ -1,4 +1,4 @@
-FROM python:3.8-slim-buster
+FROM python:3.11-slim-buster
 
 # Use Docker BuildKit for better caching and faster builds
 ARG DOCKER_BUILDKIT=1
@@ -8,7 +8,7 @@ ARG COMPOSE_DOCKER_CLI_BUILD=1
 
 # Configure apt and install packages
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends apt-utils curl sudo git libwebp-dev && \
+    apt-get install -y --no-install-recommends apt-utils zlib1g-dev libjpeg-dev gcc build-essential python3-dev curl sudo git libwebp-dev && \
     # Clean up
     apt-get autoremove -y && \
     apt-get clean -y && \
@@ -32,11 +32,11 @@ WORKDIR /workspace
 # Set Poetry installation location (i.e. $POETRY_HOME/venv)
 ENV POETRY_HOME=/usr/local
 # Install Poetry
-RUN pip install --upgrade pip && \
+RUN pip install --upgrade pip setuptools wheel packaging poetry poetry-plugin-export && \
     # Install Poetry
-    curl -sSL https://install.python-poetry.org | POETRY_HOME=/opt/poetry python && \
-    cd /usr/local/bin && \
-    ln -s /opt/poetry/bin/poetry && \
+    # curl -sSL https://install.python-poetry.org | POETRY_HOME=/opt/poetry python && \
+    # cd /usr/local/bin && \
+    # ln -s /opt/poetry/bin/poetry && \
     poetry config virtualenvs.create false && \
     # Clean up
     apt-get autoremove -y && \
@@ -47,5 +47,10 @@ RUN pip install --upgrade pip && \
 USER $USER_UID_NEW
 
 COPY poetry.lock pyproject.toml ./
+# RUN poetry config virtualenvs.create false && \
+#     poetry install --no-interaction --no-ansi
+
 RUN poetry config virtualenvs.create false && \
-    poetry install --no-interaction --no-ansi
+    # Export the requirements to stdout, and install them in the virtual environment
+    poetry export --with dev --no-interaction --no-ansi --without-hashes --format requirements.txt \
+    | pip install -r /dev/stdin --no-cache-dir
