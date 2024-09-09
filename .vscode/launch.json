@@ -7,7 +7,7 @@
         // Regular Python file debugger to run the current file
         {
             "name": "Python Run Current File",
-            "type": "python",
+            "type": "debugpy",
             "request": "launch",
             "program": "${file}",
             "console": "integratedTerminal",
@@ -18,7 +18,7 @@
         // Pytest all files
         {
             "name": "Pytest All Files",
-            "type": "python",
+            "type": "debugpy",
             "request": "launch",
             "module": "pytest",
             "console": "integratedTerminal",
@@ -33,7 +33,7 @@
         // Pytest run the current file only
         {
             "name": "Pytest Run Current File",
-            "type": "python",
+            "type": "debugpy",
             "request": "launch",
             "module": "pytest",
             "console": "integratedTerminal",
@@ -48,7 +48,7 @@
         // Run the main CLI application and get the version
         {
             "name": "Python Run CLI",
-            "type": "python",
+            "type": "debugpy",
             "request": "launch",
             "module": "make_responsive_images",
             "console": "integratedTerminal",

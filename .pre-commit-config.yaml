@@ -1,12 +1,13 @@
+# This tells Gitlab to run our linting services first
+# These are the repos from which we would like to pull our hooks.
 repos:
--   repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v2.3.0
-    hooks:
-    -   id: check-yaml
-    -   id: trailing-whitespace
-    -   id: check-toml
-    -   id: check-json
--   repo: https://github.com/psf/black
-    rev: 20.8b1
-    hooks:
-    -   id: black
+- repo: https://github.com/astral-sh/ruff-pre-commit
+  # Ruff version.
+  rev: v0.3.4
+  hooks:
+    # Run the linter.
+    - id: ruff
+      args: [ --config, 'pyproject.toml', "--ignore", "E402" ]
+    # Run the formatter.
+    - id: ruff-format
+

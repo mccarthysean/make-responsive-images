@@ -45,3 +45,115 @@ Werkzeug = "^2.0.2"
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.ruff]
+# Exclude a variety of commonly ignored directories.
+exclude = [
+    ".bzr",
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".git-rewrite",
+    ".hg",
+    ".ipynb_checkpoints",
+    ".mypy_cache",
+    ".nox",
+    ".pants.d",
+    ".pyenv",
+    ".pytest_cache",
+    ".pytype",
+    ".ruff_cache",
+    ".svn",
+    ".tox",
+    ".venv",
+    ".vscode",
+    "__pypackages__",
+    "_build",
+    "buck-out",
+    "build",
+    "dist",
+    "node_modules",
+    "site-packages",
+    "venv",
+]
+
+# Same as Black.
+line-length = 88
+indent-width = 4
+
+# Assume Python 3.11
+target-version = "py311"
+
+# Enable application of unsafe fixes. If excluded, a hint will be displayed when unsafe fixes are available.
+# If set to false, the hint will be hidden.
+unsafe-fixes = true
+
+[tool.ruff.lint]
+# Enable Pyflakes (`F`) and a subset of the pycodestyle (`E`)  codes by default.
+# Unlike Flake8, Ruff doesn't enable pycodestyle warnings (`W`) or
+# McCabe complexity (`C901`) by default.
+# select = ["E4", "E7", "E9", "F", "I001"]
+# Ignore `E402` (import violations)
+ignore = ["E402", "I001"]
+
+# Allow fix for all enabled rules (when `--fix`) is provided.
+fixable = ["ALL"]
+# Disable fix for unused imports (`F401`).
+# unfixable = ["F401"]
+unfixable = []
+
+# Avoid automatically removing unused imports in __init__.py files
+# The `ignore-init-module-imports` option is deprecated and will be removed in a future release.
+# Ruff's handling of imports in `__init__.py` files has been improved (in preview) and unused imports will always be flagged.
+# ignore-init-module-imports = false
+
+# Allow unused variables when underscore-prefixed.
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+
+[tool.ruff.format]
+# Like Black, use double quotes for strings.
+quote-style = "double"
+
+# Like Black, indent with spaces, rather than tabs.
+indent-style = "space"
+
+# Like Black, respect magic trailing commas.
+skip-magic-trailing-comma = false
+
+# Like Black, automatically detect the appropriate line ending.
+line-ending = "auto"
+
+# Enable auto-formatting of code examples in docstrings. Markdown,
+# reStructuredText code/literal blocks and doctests are all supported.
+#
+# This is currently disabled by default, but it is planned for this
+# to be opt-out in the future.
+docstring-code-format = true
+
+# Set the line length limit used when formatting code snippets in
+# docstrings.
+#
+# This only has an effect when the `docstring-code-format` setting is
+# enabled.
+docstring-code-line-length = "dynamic"
+
+[tool.pytest.ini_options]
+norecursedirs = ['build', 'dist', 'node_modules', '*.egg-info', '.state requirements']
+markers = [
+    'unit: Quick running unit tests which test small units of functionality.',
+    'functional: Slower running tests which test the entire system is functioning.',
+]
+# filterwarnings = [
+#     'ignore::warehouse.packaging.services.InsecureStorageWarning',
+# ]
+
+[tool.curlylint]
+# For jinja's i18n extension:
+template_tags = [['trans', 'pluralize', 'endtrans']]
+
+[tool.curlylint.rules]
+indent = 2
+html_has_lang = 'en-US'
+image_alt = true
+aria_role = true
+
