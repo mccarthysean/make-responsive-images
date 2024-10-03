@@ -43,6 +43,7 @@ def test_image_resize():
             "--lower",
             "--dashes",
             "--flask",
+            "--no-delete",
         ],
     )
     assert result.exit_code == 0
@@ -51,7 +52,7 @@ def test_image_resize():
     # Four images and one html file for the img tag
     assert len(files_new) == 5
 
-    tag_file: Path = None
+    tag_file: Path | None = None
     for file_ in files_new:
         if "img-tag-" in file_.stem:
             tag_file = file_

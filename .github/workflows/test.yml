@@ -42,3 +42,4 @@ jobs:
 
       - name: Code Quality Checks
         run: poetry run bash scripts/lint_check.sh
+  

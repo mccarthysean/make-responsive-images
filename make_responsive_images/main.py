@@ -3,9 +3,9 @@ from pathlib import Path
 from typing import Optional
 
 import typer
+from PIL import Image
 
 from . import __app_name__, __version__
-from .utils import make_html, resize_image
 
 app = typer.Typer(
     name="resize",
@@ -17,9 +17,160 @@ app = typer.Typer(
     add_completion=True,
     # help is the help message for the main command
     help="Resize images",
+    pretty_exceptions_enable=True,
+    pretty_exceptions_short=True,
+    pretty_exceptions_show_locals=True,
 )
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
+
+
+def resize_image(
+    file: Path,
+    widths: list,
+    fmt: str,
+    qual: int,
+    lower: bool,
+    dashes: bool,
+) -> list:
+    """Resize the image to the widths specified"""
+
+    # Convert to RGB so we can save as .webp
+    image = Image.open(file).convert("RGB")
+
+    # filter out duplicates and larger than original
+    sizes_set = set()
+    for width in widths:
+        width = min(width, image.width)
+        # orig_aspect = image.width / float(image.height)
+        ratio = width / float(image.width)
+        width = int(image.width * ratio + 0.5)
+        height = int(image.height * ratio + 0.5)
+        sizes_set.add((width, height))
+    sizes = sorted(sizes_set)
+
+    largest_size = sizes[-1]
+    second_largest_size = sizes[-2]
+
+    # If the largest image size is not at least 20% larger than the second largest size,
+    # then remove the second-largest size
+    if largest_size[0] < second_largest_size[0] * 1.2:
+        # remove the second-largest size
+        sizes.pop(-2)
+
+    # if sizes[0] == image.size:
+    #     # smallest size is original image
+    #     return [image]
+
+    # create the resized images
+    resized = []
+    filenames = []
+    for width, height in sizes:
+        if (width, height) == (image.width, image.height):
+            new_image = image
+        else:
+            # new_image = image.resize((width, height), Image.ANTIALIAS)
+            new_image = image.resize((width, height), Image.Resampling.NEAREST)
+
+        resized.append(new_image)
+
+        # Save the image
+        fmt = fmt.lower()
+        if fmt not in ("jpg", "webp"):
+            raise TypeError('fmt must be either "jpg" or "webp"')
+
+        filename_new = f"{file.stem}-{width}px.{fmt}"
+
+        if lower:
+            filename_new = filename_new.lower()
+
+        if dashes:
+            filename_new = filename_new.replace("_", "-")
+
+        path_new = file.parent.joinpath(filename_new)
+        fmt2 = "jpeg" if fmt == "jpg" else fmt
+        # Set quality to max 100, min 0
+        quality = max(0, min(100, qual))
+        # The optimize flag will do an extra pass on the image to find a way
+        # to reduce its size as much as possible
+        new_image.save(path_new, fmt2, quality=quality, optimize=True)
+
+        # filename_new = f"{file.stem}-{width}px.jpg"
+        # path_new = file.parent.joinpath(filename_new)
+        # new_image.save(path_new, "JPEG", quality=50, optimize=True)
+
+        filenames.append((filename_new, width, height))
+
+        # if crop:
+        #     new_image = ImageOps.fit(
+        #         orig_image,
+        #         (width, height),
+        #         method=Image.BICUBIC,
+        #         centering=(crop[0] / 100.0, crop[1] / 100.0),
+        #     )
+        # else:
+        #     new_image = orig_image.app(
+        #         (width, height),
+        #         resample=Image.BICUBIC
+        #     )
+
+    return filenames
+
+
+def make_html(
+    orig_img_file: Path,
+    filenames: list,
+    classes: str,
+    img_sizes: str,
+    lazy: bool,
+    alt: str,
+    dir: str,
+    flask: bool,
+) -> str:
+    """Resize the image to the widths specified"""
+
+    html_str = "<img "
+
+    if classes:
+        html_str += f'class="{classes}" '
+    if lazy:
+        html_str += 'loading="lazy" '
+
+    html_str += f'\n  sizes="{img_sizes}" '
+    html_str += f'\n  alt="{alt}" '
+
+    def _get_filename(dir: str, filename: str, flask: bool) -> str:
+        """Get the filename with the directory prepended"""
+        if dir:
+            filepath: str = str(Path(dir).joinpath(filename))
+            if flask:
+                return (
+                    r"{{ " + f"url_for('static', filename='{filepath}')" + r" }}"
+                )
+            return filepath
+        return str(filename)
+
+    srcset_str = '\n  srcset="'
+    n_filenames = len(filenames)
+    filename: str = "no_filename_found"
+    for num, (filename, width, height) in enumerate(filenames):
+        is_last = num == (n_filenames - 1)
+        filename2 = _get_filename(dir=dir, filename=filename, flask=flask)
+        if not is_last:
+            srcset_str += "\n    " + filename2 + f" {width}w,"
+        else:
+            srcset_str += "\n    " + filename2 + f' {width}w"'
+            srcset_str += '\n  src="' + filename2 + '" '
+            srcset_str += f'\n  width="{width}" height="{height}"'
+
+    html_str += srcset_str
+    html_str += ">"
+
+    html_path = orig_img_file.parent.joinpath(f"img-tag-{filename}.html")
+    with open(html_path, "w") as f:
+        f.write(html_str)
+
+    return html_str
 
 
 def _version_callback(value: bool) -> None:
@@ -59,7 +210,7 @@ def image(
     widths: str = typer.Option("600,1000,1400", help="Widths of new images, in pixels"),
     html: bool = typer.Option(True, help="Generate HTML <img> tag"),
     classes: str = typer.Option(
-        None, help='Classnames to add to the <img> tag (e.g. class="img-fluid")'
+        "img-fluid", help='Classnames to add to the <img> tag (e.g. class="img-fluid")'
     ),
     img_sizes: str = typer.Option(
         "100vw", help='Sizes for the <img> tag (e.g. sizes="100vw")'
@@ -69,7 +220,7 @@ def image(
         "", help='Adds alt="" to the <img> tag (e.g. alt="Funny image")'
     ),
     dir: str = typer.Option(
-        None, help='Images directory to prepend to the src (e.g. src="dir/images")'
+        "img", help='Images directory to prepend to the src (e.g. src="dir/images")'
     ),
     fmt: str = typer.Option(
         "webp", help='Image type to save as ("jpg" and "webp" supported)'
@@ -80,9 +231,7 @@ def image(
     flask: bool = typer.Option(
         False, help="Uses Python Flask's 'url_for('static', ...)'"
     ),
-    delete: bool = typer.Option(
-        True, help="Delete the original image after resizing"
-    ),
+    delete: bool = typer.Option(True, help="Delete the original image after resizing"),
 ) -> bool:
     """This function is the entry point of the CLI."""
 
@@ -99,6 +248,7 @@ def image(
     typer.echo(f"Lowercase filename wanted: {lower}")
     typer.echo(f"Dashes wanted: {dashes}")
     typer.echo(f"Flask url_for() wanted: {flask}")
+    typer.echo(f"Delete original image: {delete}")
 
     widths_split = widths.split(",")
     widths_list = [int(width) for width in widths_split]

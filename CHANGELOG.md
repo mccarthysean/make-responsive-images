@@ -161,3 +161,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [v0.1.17]: https://github.com/mccarthysean/make-responsive-images/compare/v0.1.17...HEAD
 [0.1.17]: https://github.com/mccarthysean/make-responsive-images/releases/tag/v0.1.17
 
+## [v0.1.18]
+
+## [v0.1.18] - 2024-10-03
+
+- Added good defaults for all the options in the `resize image` command
+
+[v0.1.18]: https://github.com/mccarthysean/make-responsive-images/compare/v0.1.18...HEAD
+[0.1.18]: https://github.com/mccarthysean/make-responsive-images/releases/tag/v0.1.18

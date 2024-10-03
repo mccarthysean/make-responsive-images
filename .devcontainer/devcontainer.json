@@ -37,7 +37,8 @@
         "charliermarsh.ruff",
         "tamasfe.even-better-toml",
         "DavidAnson.vscode-markdownlint",
-        "eamodio.gitlens"
+        "eamodio.gitlens",
+        "ms-vscode.makefile-tools"
       ],
       "settings": {
         "python.linting.pylintEnabled": true,
