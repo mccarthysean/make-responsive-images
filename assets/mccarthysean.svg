@@ -1,0 +1,5 @@
+
+<svg version="1.1" width="40" height="27" xmlns="http://www.w3.org/2000/svg">
+    <rect x="9" y="1" width="25" height="25" rx="2" ry="2" fill="black"></rect>
+    <text font-family="Roboto" font-weight="bold" x="21" y="18" font-size="14" text-anchor="middle" fill="white">SM</text>
+</svg>
