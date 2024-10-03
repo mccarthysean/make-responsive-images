@@ -80,6 +80,9 @@ def image(
     flask: bool = typer.Option(
         False, help="Uses Python Flask's 'url_for('static', ...)'"
     ),
+    delete: bool = typer.Option(
+        True, help="Delete the original image after resizing"
+    ),
 ) -> bool:
     """This function is the entry point of the CLI."""
 
@@ -123,6 +126,10 @@ def image(
             flask=flask,
         )
         typer.echo(f"HTML <img> tag: \n\n{html_str}")
+
+    if delete:
+        file.unlink()
+        typer.echo(f"Deleted original image: {file}")
 
     typer.echo("\n\nDone!\n")
 

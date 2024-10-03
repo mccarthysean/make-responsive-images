@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "make-responsive-images"
-version = "0.1.16"
+version = "0.1.17"
 description = "Generate responsive images for your website, so you can use srcset in your <img> tags and serve an optimal image to each device that views your site."
 readme = "README.md"
 authors = ["Sean McCarthy <sean.mccarthy@hotmail.com>"]
