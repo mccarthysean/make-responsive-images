@@ -36,26 +36,32 @@ pip install make-responsive-images
 resize [OPTIONS] COMMAND [ARGS]...
 ```
 
-### Options
+**Options**:
 
 * `-v, --version`: Show the application's version and exit.
+* `--install-completion`: Install completion for the current shell.
+* `--show-completion`: Show completion for the current shell, to copy it or customize the installation.
 * `--help`: Show this message and exit.
 
-## Commands
+**Commands**:
 
 * `image`: Resize one image
 
-### Usage
+## `make-responsive-images image`
+
+Resize one image
+
+**Usage**:
 
 ```bash
 resize image [OPTIONS] [IMAGE]
 ```
 
-### Arguments
+**Arguments**:
 
-* `[IMAGE]`: [default: /workspace/tests/fixtures/xfer-original.jpg]
+* `[IMAGE]`: Image file location  [default: /workspace/tests/fixtures/xfer-original.jpg]
 
-### Options
+**Options**:
 
 * `--widths TEXT`: Widths of new images, in pixels  [default: 500,1000,1500,2000,2500]
 * `--html / --no-html`: Generate HTML <img> tag  [default: True]
