@@ -7,4 +7,8 @@ cd "$(dirname "$0")"
 cd ..
 echo "Current working directory: $(pwd)"
 
+echo -e "\nRunning poetry to update the lock file..."
+
 poetry lock --no-update
+
+echo -e "\nDone."

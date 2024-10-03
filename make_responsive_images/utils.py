@@ -34,7 +34,7 @@ def resize_image(
     # create the resized images
     resized = []
     filenames = []
-    for (width, height) in sizes:
+    for width, height in sizes:
         if (width, height) == (image.width, image.height):
             new_image = image
         else:

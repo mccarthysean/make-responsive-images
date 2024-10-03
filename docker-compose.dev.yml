@@ -1,0 +1,11 @@
+services:
+  images_dev:
+    build:
+      dockerfile: Dockerfile.dev
+    env_file: .env
+    volumes:
+      # Mount the root folder that contains .git
+      # - ..:/workspace
+      - ../rcom:/rcom:cached
+    # Overrides default command so things don't shut down after the process ends.
+    command: sleep infinity

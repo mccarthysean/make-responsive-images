@@ -1,5 +1,6 @@
 from pathlib import Path
 
+import pytest
 from typer.testing import CliRunner
 
 from make_responsive_images import __app_name__, __version__, main
@@ -47,11 +48,16 @@ def test_image_resize():
     assert result.exit_code == 0
     # Should be four images in the folder now, plus the html file
     files_new = [f for f in images_path.glob("*")]
+    # Four images and one html file for the img tag
     assert len(files_new) == 5
 
-    img_tag_file = images_path.joinpath("img_tag.html")
-    assert img_tag_file in files_new
-    with open(img_tag_file, "r") as f:
+    tag_file: Path = None
+    for file_ in files_new:
+        if "img-tag-" in file_.stem:
+            tag_file = file_
+    assert tag_file is not None
+
+    with open(tag_file, "r") as f:
         contents = f.read()
 
     contents_should_be = r"""<img class="img-fluid" 
@@ -64,3 +70,8 @@ def test_image_resize():
   src="{{ url_for('static', filename='img/xfer-original-1400px.webp') }}" 
   width="1400" height="805">"""
     assert contents == contents_should_be
+
+
+if __name__ == "__main__":
+    # Run Pytest
+    pytest.main(["-v", __file__])

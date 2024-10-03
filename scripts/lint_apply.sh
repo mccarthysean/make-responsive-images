@@ -1,24 +1,30 @@
 #!/bin/bash
 
+# If there's an error, stop the script
 set -e
+# Print each command that's executed
 set -x
 
 # Set the current working directory to the directory in which the script is located, for CI/CD
 cd "$(dirname "$0")"
-cd ..
+# cd ..
 echo "Current working directory: $(pwd)"
 
-# Nice sorting of imports
+# Use Ruff to lint everything
 echo ""
-echo "Running isort..."
-isort --profile black ./make_responsive_images ./tests
+echo "Running ruff linter..."
+# Run the linter
+ruff check ../make_responsive_images --fix --config ../pyproject.toml
+ruff check ../tests --fix --config ../pyproject.toml
 
-# Opinionated but lovely auto-formatting
+# Run the formatter
 echo ""
-echo "Running black..."
-black ./make_responsive_images ./tests
+echo "Running ruff formatter..."
+ruff format ../make_responsive_images --config ../pyproject.toml
+ruff format ../tests --config ../pyproject.toml
 
-# Remove unused imports and unused variables
-echo ""
-echo "Running autoflake..."
-autoflake --in-place --remove-unused-variables --remove-all-unused-imports --verbose --recursive ./make_responsive_images/ ./tests
+# # Run the pyright linter (takes a bit longer)
+# echo ""
+# echo "Running pyright linter..."
+# pyright ../make_responsive_images --project ../pyproject.toml
+# pyright ../tests --project ../pyproject.toml

@@ -17,3 +17,5 @@ echo "Ensure you have typer-cli installed before generating the docs..."
 typer --version
 echo ""
 typer make_responsive_images.main utils docs --output ./docs/index-typer-auto-generated.md --name make-responsive-images
+
+echo -e "\nDone."

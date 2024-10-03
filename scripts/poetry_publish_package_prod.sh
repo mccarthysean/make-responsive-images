@@ -23,9 +23,14 @@ export $(cat ../.env | sed 's/#.*//g' | xargs)
 # Check if the variables are empty before proceeding
 check_var "$PYPI_TOKEN_PROD" "PYPI_TOKEN_PROD"
 
+echo -e "\nRunning poetry to build the package..."
+
 # First build the files to be uploaded
 poetry build
+
+echo -e "\nRunning poetry to publish the package to the production repository..."
 
 # Publish to the production repository
 poetry publish --username __token__ --password $PYPI_TOKEN_PROD
 
+echo -e "\nDone."

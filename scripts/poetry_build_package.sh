@@ -6,4 +6,8 @@ set -e
 cd "$(dirname "$0")"
 echo "Current working directory: $(pwd)"
 
+echo -e "\nRunning poetry to build the package..."
+
 poetry build
+
+echo -e "\nDone."

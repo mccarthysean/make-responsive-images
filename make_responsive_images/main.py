@@ -7,7 +7,17 @@ import typer
 from . import __app_name__, __version__
 from .utils import make_html, resize_image
 
-app = typer.Typer()
+app = typer.Typer(
+    name="resize",
+    # invoke_without_command means that if no subcommand is provided, the main function is called
+    invoke_without_command=True,
+    # no_args_is_help=True means that if no arguments are provided, the help message is shown
+    no_args_is_help=False,
+    # add_completion=True means that the command will support shell completion
+    add_completion=True,
+    # help is the help message for the main command
+    help="Resize images",
+)
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 
@@ -19,7 +29,7 @@ def _version_callback(value: bool) -> None:
 
 
 @app.callback()
-def main(
+def version(
     version: Optional[bool] = typer.Option(
         None,
         "--version",
@@ -27,8 +37,9 @@ def main(
         help="Show the application's version and exit.",
         callback=_version_callback,
         is_eager=True,
-    )
+    ),
 ) -> bool:
+    """Show the application's version and exit."""
     if version:
         return True
     return False
@@ -69,8 +80,8 @@ def image(
     flask: bool = typer.Option(
         False, help="Uses Python Flask's 'url_for('static', ...)'"
     ),
-) -> None:
-    """Resize one image"""
+) -> bool:
+    """This function is the entry point of the CLI."""
 
     typer.secho(f"Image: {image}", fg=typer.colors.GREEN)
     typer.echo(f"Widths needed: {widths}")
@@ -111,3 +122,9 @@ def image(
             dir=dir,
             flask=flask,
         )
+
+    return True
+
+
+if __name__ == "__main__":
+    app()

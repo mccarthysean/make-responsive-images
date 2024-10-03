@@ -54,3 +54,6 @@ RUN poetry config virtualenvs.create false && \
     # Export the requirements to stdout, and install them in the virtual environment
     poetry export --with dev --no-interaction --no-ansi --without-hashes --format requirements.txt \
     | pip install -r /dev/stdin --no-cache-dir
+
+# Copy my preferred .bashrc to /root/ so that it's automatically "sourced" when the container starts
+COPY .bashrc /root/

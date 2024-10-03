@@ -115,3 +115,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 [v0.1.12]: https://github.com/mccarthysean/make-responsive-images/compare/v0.1.12...HEAD
 [0.1.12]: https://github.com/mccarthysean/make-responsive-images/releases/tag/v0.1.12
+
+## [v0.1.13]
+
+## [0.1.13] - 2024-09-10
+
+- Updated more required packages to latest versions
+
+[v0.1.13]: https://github.com/mccarthysean/make-responsive-images/compare/v0.1.13...HEAD
+[0.1.13]: https://github.com/mccarthysean/make-responsive-images/releases/tag/v0.1.13
+
+## [v0.1.14]
+
+## [v0.1.14] - 2024-10-03
+
+- Upgraded packages and improved dev environment
+
+[v0.1.14]: https://github.com/mccarthysean/make-responsive-images/compare/v0.1.14...HEAD
+[0.1.14]: https://github.com/mccarthysean/make-responsive-images/releases/tag/v0.1.14

@@ -15,8 +15,12 @@ echo "PYPI_TOKEN_TEST: $PYPI_TOKEN_TEST"
 poetry config repositories.testpypi https://test.pypi.org/legacy/
 # poetry config pypi-token.pypi $PYPI_TOKEN_TEST
 
+echo -e "\nRunning poetry to build the package..."
+
 # First build the files to be uploaded
 poetry build
+
+echo -e "\nRunning poetry to publish the package to the test repository..."
 
 # Publish to the test repository
 # poetry publish --repository testpypi
@@ -25,3 +29,5 @@ poetry publish --repository testpypi --username __token__ --password $PYPI_TOKEN
 
 # Test that it worked
 # pip install --index-url https://test.pypi.org/simple/ make-responsive-images
+
+echo -e "\nDone."

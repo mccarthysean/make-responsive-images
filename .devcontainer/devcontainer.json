@@ -1,41 +1,53 @@
 // For format details, see https://aka.ms/vscode-remote/devcontainer.json or the definition README at
 // https://github.com/microsoft/vscode-dev-containers/tree/master/containers/python-3-miniconda
 {
-	"name": "make_responsive_images",
-	// Path that the Docker build should be run from relative to devcontainer.json. 
-	// For example, a value of ".." would allow you to reference content in sibling directories. Defaults to "."
-	"context": "..",
-	// Use either the Dockerfile or docker-compose.yml to create the Docker container
-	// "dockerFile": "Dockerfile",
-	"dockerComposeFile": "docker-compose.dev.yml",
-	// Required if using dockerComposeFile. The name of the service VS Code should connect to once running.
-	// The 'service' property is the name of the service for the container that VS Code should
-	// use. Update this value and .devcontainer/docker-compose.yml to the real service name.
-	"service": "images_dev",
-	
-	// The optional 'workspaceFolder' property is the path VS Code should open by default when
-	// connected. This is typically a file mount in .devcontainer/docker-compose.yml
-	// This way if you click "Reopen in container", it knows which workspace to use.
-	"workspaceFolder": "/workspace",
-
-	"extensions": [
-		"ms-python.python",
-		"dbaeumer.vscode-eslint",
-		"ms-azuretools.vscode-docker",
-		"ms-python.vscode-pylance",
-		"charliermarsh.ruff",
-		"tamasfe.even-better-toml"
-	],
-	"settings": {
-		"python.linting.pylintEnabled": true,
-		"python.linting.enabled": true,
-		"remote.extensionKind": {
-			"ms-azuretools.vscode-docker": "workspace"
-		},
-		"git.enableSmartCommit": true,
-		"git.autofetch": true,
-	},
-	// "mounts": [
-	// 	"source=${localEnv:HOME}${localEnv:USERPROFILE},target=/host-home-folder,type=bind,consistency=cached",
-	// ]
+  "name": "make_responsive_images",
+  // Use either the Dockerfile or docker-compose.yml to create the Docker container
+  // "dockerFile": "Dockerfile",
+  "dockerComposeFile": "../docker-compose.dev.yml",
+  // Required if using dockerComposeFile. The name of the service VS Code should connect to once running.
+  // The 'service' property is the name of the service for the container that VS Code should
+  // use. Update this value and .devcontainer/docker-compose.yml to the real service name.
+  "service": "images_dev",
+  // The optional 'workspaceFolder' property is the path VS Code should open by default when
+  // connected. This is typically a file mount in .devcontainer/docker-compose.yml
+  // This way if you click "Reopen in container", it knows which workspace to use.
+  "workspaceFolder": "/workspace",
+  "mounts": [
+    // Mount the local source code into the container (only works in Windows 11)
+    "source=${localWorkspaceFolder},target=/workspace,type=bind"
+  ],
+  "containerEnv": {
+      // Set the path for the Python interpreter
+      "PATH": "/workspace:${PATH}",
+      "PYTHONPATH": "/workspace:${PYTHONPATH}"
+  },
+  // add Docker as a feature, from the Docker outside of Docker image,
+  // to use the Docker CLI from within the container
+  "features": {
+    "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {}
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "dbaeumer.vscode-eslint",
+        "ms-azuretools.vscode-docker",
+        "ms-python.vscode-pylance",
+        "charliermarsh.ruff",
+        "tamasfe.even-better-toml",
+        "DavidAnson.vscode-markdownlint",
+        "eamodio.gitlens"
+      ],
+      "settings": {
+        "python.linting.pylintEnabled": true,
+        "python.linting.enabled": true,
+        "remote.extensionKind": {
+          "ms-azuretools.vscode-docker": "workspace"
+        },
+        "git.enableSmartCommit": true,
+        "git.autofetch": true
+      }
+    }
+  }
 }
