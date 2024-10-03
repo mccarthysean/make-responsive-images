@@ -144,9 +144,7 @@ def make_html(
         if dir:
             filepath: str = str(Path(dir).joinpath(filename))
             if flask:
-                return (
-                    r"{{ " + f"url_for('static', filename='{filepath}')" + r" }}"
-                )
+                return r"{{ " + f"url_for('static', filename='{filepath}')" + r" }}"
             return filepath
         return str(filename)
 
