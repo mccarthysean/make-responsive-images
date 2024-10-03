@@ -32,6 +32,9 @@ jobs:
           key: ${{ runner.os }}-python-github-actions-${{ env.pythonLocation }}-${{ hashFiles('pyproject.toml') }}-v01
       - name: Install GitHub Actions dependencies
         if: steps.cache.outputs.cache-hit != 'true'
+        uses: abatilo/actions-poetry@v2.0.0
+        with:
+          poetry-version: ${{ matrix.poetry-version }}
         run: poetry install --no-interaction --no-ansi --extras docs
       - name: Deploy Docs Status Pending
         run: python ./scripts/deploy_docs_status.py
