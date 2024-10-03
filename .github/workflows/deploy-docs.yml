@@ -29,10 +29,10 @@ jobs:
         id: cache
         with:
           path: ${{ env.pythonLocation }}
-          key: ${{ runner.os }}-python-github-actions-${{ env.pythonLocation }}-${{ hashFiles('requirements-github-actions.txt') }}-v01
+          key: ${{ runner.os }}-python-github-actions-${{ env.pythonLocation }}-${{ hashFiles('pyproject.toml') }}-v01
       - name: Install GitHub Actions dependencies
         if: steps.cache.outputs.cache-hit != 'true'
-        run: pip install -r requirements-github-actions.txt
+        run: poetry install --no-interaction --no-ansi --extras docs
       - name: Deploy Docs Status Pending
         run: python ./scripts/deploy_docs_status.py
         env:
@@ -51,18 +51,18 @@ jobs:
           merge-multiple: true
           github-token: ${{ secrets.GITHUB_TOKEN }}
           run-id: ${{ github.event.workflow_run.id }}
-      - name: Deploy to Cloudflare Pages
-        # hashFiles returns an empty string if there are no files
-        if: hashFiles('./site/*')
-        id: deploy
-        uses: cloudflare/pages-action@v1
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          projectName: dockerswarmrocks
-          directory: './site'
-          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
-          branch: ${{ ( github.event.workflow_run.head_repository.full_name == github.repository && github.event.workflow_run.head_branch == 'master' && 'main' ) || ( github.event.workflow_run.head_sha ) }}
+      # - name: Deploy to Cloudflare Pages
+      #   # hashFiles returns an empty string if there are no files
+      #   if: hashFiles('./site/*')
+      #   id: deploy
+      #   uses: cloudflare/pages-action@v1
+      #   with:
+      #     apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      #     accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      #     projectName: dockerswarmrocks
+      #     directory: './site'
+      #     gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+      #     branch: ${{ ( github.event.workflow_run.head_repository.full_name == github.repository && github.event.workflow_run.head_branch == 'master' && 'main' ) || ( github.event.workflow_run.head_sha ) }}
       - name: Comment Deploy
         run: python ./scripts/deploy_docs_status.py
         env:

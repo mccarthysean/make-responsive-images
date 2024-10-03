@@ -18,4 +18,6 @@ typer --version
 echo ""
 typer make_responsive_images.main utils docs --output ./docs/index-typer-auto-generated.md --name make-responsive-images
 
+echo -e "\n New file created: docs/index-typer-auto-generated.md"
+
 echo -e "\nDone."

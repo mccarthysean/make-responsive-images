@@ -26,13 +26,8 @@ jobs:
           docs:
             - README.md
             - docs/**
-            - requirements-docs.txt
-            - requirements-docs-insiders.txt
             - pyproject.toml
             - mkdocs.yml
-            - mkdocs.insiders.yml
-            - mkdocs.maybe-insiders.yml
-            - mkdocs.no-insiders.yml
             - .github/workflows/build-docs.yml
             - .github/workflows/deploy-docs.yml
 
@@ -55,15 +50,10 @@ jobs:
         id: cache
         with:
           path: ${{ env.pythonLocation }}
-          key: ${{ runner.os }}-python-docs-${{ env.pythonLocation }}-${{ hashFiles('pyproject.toml', 'requirements-docs.txt', 'requirements-docs-insiders.txt') }}-v02
+          key: ${{ runner.os }}-python-docs-${{ env.pythonLocation }}-${{ hashFiles('pyproject.toml') }}-v02
       - name: Install docs extras
         if: steps.cache.outputs.cache-hit != 'true'
-        run: pip install -r requirements-docs.txt
-      - name: Install Material for MkDocs Insiders
-        if: ( github.event_name != 'pull_request' || github.secret_source == 'Actions' ) && steps.cache.outputs.cache-hit != 'true'
-        run: pip install -r requirements-docs-insiders.txt
-        env:
-          TOKEN: ${{ secrets.MKDOCS_MATERIAL_INSIDERS }}
+        run: poetry install --no-interaction --no-ansi --extras docs
       - uses: actions/cache@v4
         with:
           key: mkdocs-cards-${{ github.ref }}-v1

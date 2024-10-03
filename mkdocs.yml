@@ -131,17 +131,17 @@ extra:
             Thanks for your feedback!
   social:
   - icon: fontawesome/brands/github-alt
-    link: https://github.com/tiangolo/dockerswarm.rocks
+    link: https://github.com/mccarthysean/make-responsive-images
   - icon: fontawesome/brands/twitter
-    link: https://twitter.com/tiangolo
+    link: https://twitter.com/mccarthysean
   - icon: fontawesome/brands/linkedin
-    link: https://www.linkedin.com/in/tiangolo
+    link: https://www.linkedin.com/in/mccarthysean
   - icon: fontawesome/brands/dev
-    link: https://dev.to/tiangolo
+    link: https://dev.to/mccarthysean
   - icon: fontawesome/brands/medium
-    link: https://medium.com/@tiangolo
+    link: https://medium.com/@mccarthysean
   - icon: fontawesome/solid/globe
-    link: https://tiangolo.com
+    link: https://mccarthysean.dev
 
 extra_css:
   - css/termynal.css
