@@ -27,6 +27,15 @@ def resize_image(
         sizes_set.add((width, height))
     sizes = sorted(sizes_set)
 
+    largest_size = sizes[-1]
+    second_largest_size = sizes[-2]
+
+    # If the largest image size is not at least 20% larger than the second largest size,
+    # then remove the second-largest size
+    if largest_size[0] < second_largest_size[0] * 1.2:
+        # remove the second-largest size
+        sizes.pop(-2)
+
     # if sizes[0] == image.size:
     #     # smallest size is original image
     #     return [image]

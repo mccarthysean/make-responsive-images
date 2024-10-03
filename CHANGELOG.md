@@ -133,3 +133,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 [v0.1.14]: https://github.com/mccarthysean/make-responsive-images/compare/v0.1.14...HEAD
 [0.1.14]: https://github.com/mccarthysean/make-responsive-images/releases/tag/v0.1.14
+
+## [v0.1.15]
+
+## [v0.1.15] - 2024-10-03
+
+- If the largest image size is not at least 20% larger than the second largest size, then remove the largest size
+
+[v0.1.15]: https://github.com/mccarthysean/make-responsive-images/compare/v0.1.15...HEAD
+[0.1.15]: https://github.com/mccarthysean/make-responsive-images/releases/tag/v0.1.15
+
