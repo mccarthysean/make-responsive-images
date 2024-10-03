@@ -25,7 +25,7 @@ colorama = "^0.4.6"
 shellingham = "^1.5.4"
 
 [tool.poetry.group.dev.dependencies]
-pytest = "^6.0.1"
+pytest = ">=6.0.1,<9.0.0"
 ruff = "^0.6.8"
 pyright = "^1.1.383"
 mkdocs = "^1.6.1"
