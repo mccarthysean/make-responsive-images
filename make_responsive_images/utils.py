@@ -104,7 +104,7 @@ def make_html(
     alt: str,
     dir: str,
     flask: bool,
-) -> None:
+) -> str:
     """Resize the image to the widths specified"""
 
     html_str = "<img "
@@ -145,4 +145,4 @@ def make_html(
     with open(html_path, "w") as f:
         f.write(html_str)
 
-    return None
+    return html_str

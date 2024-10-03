@@ -112,7 +112,7 @@ def image(
     typer.echo(f"filenames: {filenames}")
 
     if html:
-        make_html(
+        html_str: str = make_html(
             orig_img_file=file,
             filenames=filenames,
             classes=classes,
@@ -122,6 +122,9 @@ def image(
             dir=dir,
             flask=flask,
         )
+        typer.echo(f"HTML <img> tag: \n\n{html_str}")
+
+    typer.echo("\n\nDone!\n")
 
     return True
 

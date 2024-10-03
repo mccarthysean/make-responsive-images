@@ -143,3 +143,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [v0.1.15]: https://github.com/mccarthysean/make-responsive-images/compare/v0.1.15...HEAD
 [0.1.15]: https://github.com/mccarthysean/make-responsive-images/releases/tag/v0.1.15
 
+## [v0.1.16]
+
+## [v0.1.16] - 2024-10-03
+
+- If an HTML <img> tag is wanted, it will print that tag to the console so you can easily copy and paste it into your code.
+
+[v0.1.16]: https://github.com/mccarthysean/make-responsive-images/compare/v0.1.16...HEAD
+[0.1.16]: https://github.com/mccarthysean/make-responsive-images/releases/tag/v0.1.16
+
+
+
