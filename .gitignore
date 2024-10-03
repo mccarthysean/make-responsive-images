@@ -16,6 +16,7 @@ Pipfile.lock
 build/
 *.egg-info/
 .env
+*.Identifier
 
 # OS X
 .DS_Store
@@ -23,3 +24,5 @@ build/
 tests/fixtures/xfer-original-*
 tests/fixtures/img-tag-*
 *.html
+/scripts/.cache
+/.cache
