@@ -13,9 +13,11 @@
   // connected. This is typically a file mount in .devcontainer/docker-compose.yml
   // This way if you click "Reopen in container", it knows which workspace to use.
   "workspaceFolder": "/workspace",
+  "initializeCommand": "mkdir -p ${localEnv:HOME}/.claude-docker 2>/dev/null || true",
   "mounts": [
     // Mount the local source code into the container (only works in Windows 11)
-    "source=${localWorkspaceFolder},target=/workspace,type=bind"
+    "source=${localWorkspaceFolder},target=/workspace,type=bind",
+    "source=${localEnv:HOME}${localEnv:USERPROFILE}/.claude-docker,target=/root/.claude,type=bind"
   ],
   "containerEnv": {
       // Set the path for the Python interpreter
